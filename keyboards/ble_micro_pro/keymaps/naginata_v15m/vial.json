@@ -1,0 +1,368 @@
+{
+  "matrix": {
+    "rows": 1,
+    "cols": 19
+  },
+  "customKeycodes": [
+    {
+      "name": "SEL_BLE",
+      "title": "Output report from BLE",
+      "shortName": "SEL_BLE"
+    },
+    {
+      "name": "SEL_USB",
+      "title": "Output report from USB",
+      "shortName": "SEL_USB"
+    },
+    {
+      "name": "ADV0",
+      "title": "Start advertise to ID0",
+      "shortName": "ADV_ID0"
+    },
+    {
+      "name": "ADV1",
+      "title": "Start advertise to ID1",
+      "shortName": "ADV_ID1"
+    },
+    {
+      "name": "ADV2",
+      "title": "Start advertise to ID2",
+      "shortName": "ADV_ID2"
+    },
+    {
+      "name": "ADV3",
+      "title": "Start advertise to ID3",
+      "shortName": "ADV_ID3"
+    },
+    {
+      "name": "ADV4",
+      "title": "Start advertise to ID4",
+      "shortName": "ADV_ID4"
+    },
+    {
+      "name": "ADV5",
+      "title": "Start advertise to ID5",
+      "shortName": "ADV_ID5"
+    },
+    {
+      "name": "ADV6",
+      "title": "Start advertise to ID6",
+      "shortName": "ADV_ID6"
+    },
+    {
+      "name": "ADV7",
+      "title": "Start advertise to ID7",
+      "shortName": "ADV_ID7"
+    },
+    {
+      "name": "AD_WO_L",
+      "title": "Start advertise without whitelist (Pair new device)",
+      "shortName": "AD_WO_L"
+    },
+    {
+      "name": "DEL0",
+      "title": "Delete pairing info ID0",
+      "shortName": "DEL_ID0"
+    },
+    {
+      "name": "DEL1",
+      "title": "Delete pairing info ID1",
+      "shortName": "DEL_ID1"
+    },
+    {
+      "name": "DEL2",
+      "title": "Delete pairing info ID2",
+      "shortName": "DEL_ID2"
+    },
+    {
+      "name": "DEL3",
+      "title": "Delete pairing info ID3",
+      "shortName": "DEL_ID3"
+    },
+    {
+      "name": "DEL4",
+      "title": "Delete pairing info ID4",
+      "shortName": "DEL_ID4"
+    },
+    {
+      "name": "DEL5",
+      "title": "Delete pairing info ID5",
+      "shortName": "DEL_ID5"
+    },
+    {
+      "name": "DEL6",
+      "title": "Delete pairing info ID6",
+      "shortName": "DEL_ID6"
+    },
+    {
+      "name": "DEL7",
+      "title": "Delete pairing info ID7",
+      "shortName": "DEL_ID7"
+    },
+    {
+      "name": "DEL_ALL",
+      "title": "Delete all pairing info",
+      "shortName": "DEL_ALL"
+    },
+    {
+      "name": "BATT",
+      "title": "Print battery info",
+      "shortName": "BATT_LV"
+    },
+    {
+      "name": "NG_Q",
+      "title": "Naginata System Key Q",
+      "shortName": "NG_Q"
+    },
+    {
+      "name": "NG_W",
+      "title": "Naginata System Key W",
+      "shortName": "NG_W"
+    },
+    {
+      "name": "NG_E",
+      "title": "Naginata System Key E",
+      "shortName": "NG_E"
+    },
+    {
+      "name": "NG_R",
+      "title": "Naginata System Key R",
+      "shortName": "NG_R"
+    },
+    {
+      "name": "NG_T",
+      "title": "Naginata System Key T",
+      "shortName": "NG_T"
+    },
+    {
+      "name": "NG_Y",
+      "title": "Naginata System Key Y",
+      "shortName": "NG_Y"
+    },
+    {
+      "name": "NG_U",
+      "title": "Naginata System Key U",
+      "shortName": "NG_U"
+    },
+    {
+      "name": "NG_I",
+      "title": "Naginata System Key I",
+      "shortName": "NG_I"
+    },
+    {
+      "name": "NG_O",
+      "title": "Naginata System Key O",
+      "shortName": "NG_O"
+    },
+    {
+      "name": "NG_P",
+      "title": "Naginata System Key P",
+      "shortName": "NG_P"
+    },
+    {
+      "name": "NG_A",
+      "title": "Naginata System Key A",
+      "shortName": "NG_A"
+    },
+    {
+      "name": "NG_S",
+      "title": "Naginata System Key S",
+      "shortName": "NG_S"
+    },
+    {
+      "name": "NG_D",
+      "title": "Naginata System Key D",
+      "shortName": "NG_D"
+    },
+    {
+      "name": "NG_F",
+      "title": "Naginata System Key F",
+      "shortName": "NG_F"
+    },
+    {
+      "name": "NG_G",
+      "title": "Naginata System Key G",
+      "shortName": "NG_G"
+    },
+    {
+      "name": "NG_H",
+      "title": "Naginata System Key H",
+      "shortName": "NG_H"
+    },
+    {
+      "name": "NG_J",
+      "title": "Naginata System Key J",
+      "shortName": "NG_J"
+    },
+    {
+      "name": "NG_K",
+      "title": "Naginata System Key K",
+      "shortName": "NG_K"
+    },
+    {
+      "name": "NG_L",
+      "title": "Naginata System Key L",
+      "shortName": "NG_L"
+    },
+    {
+      "name": "NG_SCLN",
+      "title": "Naginata System Key SCLN",
+      "shortName": "NG_SCLN"
+    },
+    {
+      "name": "NG_Z",
+      "title": "Naginata System Key Z",
+      "shortName": "NG_Z"
+    },
+    {
+      "name": "NG_X",
+      "title": "Naginata System Key X",
+      "shortName": "NG_X"
+    },
+    {
+      "name": "NG_C",
+      "title": "Naginata System Key C",
+      "shortName": "NG_C"
+    },
+    {
+      "name": "NG_V",
+      "title": "Naginata System Key V",
+      "shortName": "NG_V"
+    },
+    {
+      "name": "NG_B",
+      "title": "Naginata System Key B",
+      "shortName": "NG_B"
+    },
+    {
+      "name": "NG_N",
+      "title": "Naginata System Key N",
+      "shortName": "NG_N"
+    },
+    {
+      "name": "NG_M",
+      "title": "Naginata System Key M",
+      "shortName": "NG_M"
+    },
+    {
+      "name": "NG_COMM",
+      "title": "Naginata System Key COMM",
+      "shortName": "NG_COMM"
+    },
+    {
+      "name": "NG_DOT",
+      "title": "Naginata System Key DOT",
+      "shortName": "NG_DOT"
+    },
+    {
+      "name": "NG_SLSH",
+      "title": "Naginata System Key SLSH",
+      "shortName": "NG_SLSH"
+    },
+    {
+      "name": "NG_SHFT",
+      "title": "Naginata System Key Space",
+      "shortName": "NG_SHFT"
+    },
+    {
+      "name": "NG_SHFT2",
+      "title": "Naginata System Key Enter",
+      "shortName": "NG_SHFT2"
+    },
+    {
+      "name": "NG_ON",
+      "title": "Naginata System On",
+      "shortName": "NG_ON"
+    },
+    {
+      "name": "NG_OFF",
+      "title": "Naginata System Off",
+      "shortName": "NG_OFF"
+    },
+    {
+      "name": "NG_CLR",
+      "title": "Naginata System Clear",
+      "shortName": "NG_CLR"
+    },
+    {
+      "name": "NGSW_WIN",
+      "title": "Naginata System to Windows",
+      "shortName": "NGSW_WIN"
+    },
+    {
+      "name": "NGSW_MAC",
+      "title": "Naginata System to Mac",
+      "shortName": "NGSW_MAC"
+    },
+    {
+      "name": "NGSW_LNX",
+      "title": "Naginata System to Linux",
+      "shortName": "NGSW_LNX"
+    },
+    {
+      "name": "NGSW_IOS",
+      "title": "Naginata System to iOS",
+      "shortName": "NGSW_IOS"
+    },
+    {
+      "name": "NG_MLV",
+      "title": "Naginata System for Mac Live Conversion Toggle",
+      "shortName": "NG_MLV"
+    },
+    {
+      "name": "NG_SHOS",
+      "title": "Naginata System Show OS",
+      "shortName": "NG_SHOS"
+    },
+    {
+      "name": "NG_TAYO",
+      "title": "Naginata System TATEGAKI Toggle",
+      "shortName": "NG_TAYO"
+    },
+    {
+      "name": "NG_KOTI",
+      "title": "Naginata System KOUCHI-Shift Toggle",
+      "shortName": "NG_KOTI"
+    },
+    {
+      "name": "US_KEY",
+      "title": "No use twpair_on_jis",
+      "shortName": "US\nKEY"
+    },
+    {
+      "name": "US2JIS",
+      "title": "Use twpair_on_jis",
+      "shortName": "US2\nJIS"
+    }
+  ],
+  "layouts": {
+    "keymap": [
+      [
+        "0,0",
+        "0,1",
+        "0,2",
+        "0,3",
+        "0,4",
+        "0,5",
+        "0,6",
+        "0,7",
+        "0,8",
+        "0,9",
+        "0,10",
+        "0,11",
+        "0,12",
+        "0,13",
+        "0,14",
+        "0,15",
+        "0,16",
+        "0,17",
+        "0,18",
+        {
+          "x": 0.25
+        },
+        "0,0\n\n\n\n\n\n\n\n\ne",
+        "0,1\n\n\n\n\n\n\n\n\ne"
+      ]
+    ]
+  }
+}

@@ -5,13 +5,17 @@
 #include "bmp.h"
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-    bool cont = process_record_bmp(keycode, record);
+    // bool cont = process_record_bmp(keycode, record);
 
-    if (cont) {
-        process_record_user(keycode, record);
+    // if (cont) {
+    //     process_record_user(keycode, record);
+    // }
+
+    // return cont;
+    if (!process_record_user(keycode, record)) {
+        return false;
     }
-
-    return cont;
+    return process_record_bmp(keycode, record);
 }
 
 void raw_hid_receive_kb(uint8_t *data, uint8_t length) {
