@@ -7,107 +7,107 @@
     {
       "name": "SEL_BLE",
       "title": "Output report from BLE",
-      "shortName": "SEL_BLE"
+      "shortName": "SEL\nBLE"
     },
     {
       "name": "SEL_USB",
       "title": "Output report from USB",
-      "shortName": "SEL_USB"
+      "shortName": "SEL\nUSB"
     },
     {
       "name": "ADV0",
       "title": "Start advertise to ID0",
-      "shortName": "ADV_ID0"
+      "shortName": "ADV\nID0"
     },
     {
       "name": "ADV1",
       "title": "Start advertise to ID1",
-      "shortName": "ADV_ID1"
+      "shortName": "ADV\nID1"
     },
     {
       "name": "ADV2",
       "title": "Start advertise to ID2",
-      "shortName": "ADV_ID2"
+      "shortName": "ADV\nID2"
     },
     {
       "name": "ADV3",
       "title": "Start advertise to ID3",
-      "shortName": "ADV_ID3"
+      "shortName": "ADV\nID3"
     },
     {
       "name": "ADV4",
       "title": "Start advertise to ID4",
-      "shortName": "ADV_ID4"
+      "shortName": "ADV\nID4"
     },
     {
       "name": "ADV5",
       "title": "Start advertise to ID5",
-      "shortName": "ADV_ID5"
+      "shortName": "ADV\nID5"
     },
     {
       "name": "ADV6",
       "title": "Start advertise to ID6",
-      "shortName": "ADV_ID6"
+      "shortName": "ADV\nID6"
     },
     {
       "name": "ADV7",
       "title": "Start advertise to ID7",
-      "shortName": "ADV_ID7"
+      "shortName": "ADV\nID7"
     },
     {
       "name": "AD_WO_L",
       "title": "Start advertise without whitelist (Pair new device)",
-      "shortName": "AD_WO_L"
+      "shortName": "ADV\nW/O L"
     },
     {
       "name": "DEL0",
       "title": "Delete pairing info ID0",
-      "shortName": "DEL_ID0"
+      "shortName": "DEL\nID0"
     },
     {
       "name": "DEL1",
       "title": "Delete pairing info ID1",
-      "shortName": "DEL_ID1"
+      "shortName": "DEL\nID1"
     },
     {
       "name": "DEL2",
       "title": "Delete pairing info ID2",
-      "shortName": "DEL_ID2"
+      "shortName": "DEL\nID2"
     },
     {
       "name": "DEL3",
       "title": "Delete pairing info ID3",
-      "shortName": "DEL_ID3"
+      "shortName": "DEL\nID3"
     },
     {
       "name": "DEL4",
       "title": "Delete pairing info ID4",
-      "shortName": "DEL_ID4"
+      "shortName": "DEL\nID4"
     },
     {
       "name": "DEL5",
       "title": "Delete pairing info ID5",
-      "shortName": "DEL_ID5"
+      "shortName": "DEL\nID5"
     },
     {
       "name": "DEL6",
       "title": "Delete pairing info ID6",
-      "shortName": "DEL_ID6"
+      "shortName": "DEL\nID6"
     },
     {
       "name": "DEL7",
       "title": "Delete pairing info ID7",
-      "shortName": "DEL_ID7"
+      "shortName": "DEL\nID7"
     },
     {
       "name": "DEL_ALL",
       "title": "Delete all pairing info",
-      "shortName": "DEL_ALL"
+      "shortName": "DEL\nALL"
     },
     {
       "name": "BATT",
       "title": "Print battery info",
-      "shortName": "BATT_LV"
+      "shortName": "BATT\nLV"
     },
     {
       "name": "NG_Q",
@@ -280,11 +280,6 @@
       "shortName": "NG_OFF"
     },
     {
-      "name": "NG_CLR",
-      "title": "Naginata System Clear",
-      "shortName": "NG_CLR"
-    },
-    {
       "name": "NGSW_WIN",
       "title": "Naginata System to Windows",
       "shortName": "NGSW_WIN"
@@ -303,11 +298,6 @@
       "name": "NGSW_IOS",
       "title": "Naginata System to iOS",
       "shortName": "NGSW_IOS"
-    },
-    {
-      "name": "NG_MLV",
-      "title": "Naginata System for Mac Live Conversion Toggle",
-      "shortName": "NG_MLV"
     },
     {
       "name": "NG_SHOS",
