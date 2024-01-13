@@ -3,19 +3,17 @@
 #include "ble_micro_pro.h"
 
 #include "bmp.h"
+#include "bmp_custom_keycodes.h"
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-    // bool cont = process_record_bmp(keycode, record);
-
-    // if (cont) {
-    //     process_record_user(keycode, record);
-    // }
-
-    // return cont;
-    if (!process_record_user(keycode, record)) {
-        return false;
+    bool cont = true;
+    if (keycode <= BATT_LV) {
+        cont = process_record_bmp(keycode, record);
     }
-    return process_record_bmp(keycode, record);
+    if (cont) {
+        cont = process_record_user(keycode, record);
+    }
+    return cont;
 }
 
 void raw_hid_receive_kb(uint8_t *data, uint8_t length) {
