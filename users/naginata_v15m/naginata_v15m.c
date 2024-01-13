@@ -1249,7 +1249,17 @@ void ng_end() {
 }
 
 void ng_katakana() {
+#ifndef NG_BMP
   tap_code(KC_F7);
+#else
+  switch (naginata_config.os) {
+    case NG_IOS:
+      break;
+    default:
+      tap_code(KC_F7);
+      break;
+  }
+#endif
 }
 
 void ng_save() {
@@ -1268,15 +1278,26 @@ void ng_save() {
       tap_code16(LCTL(KC_S));
       break;
     case NG_MAC_DIC:
-    case NG_IOS:
       tap_code16(LCMD(KC_S));
+      break;
+    case NG_IOS:
       break;
 #endif
   }
 }
 
 void ng_hiragana() {
+#ifndef NG_BMP
   tap_code(KC_F6);
+#else
+  switch (naginata_config.os) {
+    case NG_IOS:
+      break;
+    default:
+      tap_code(KC_F6);
+      break;
+  }
+#endif
 }
 
 void ng_redo() {
@@ -1464,11 +1485,11 @@ void ng_ime_complete() {
 void dic_send_string(const char *str) {
   switch (naginata_config.os) {
     case NG_IOS:
-      ng_send_kana(str);
-      tap_code(KC_LCTL); tap_code(KC_LSFT); tap_code(KC_LCTL); // ディレイの代わり
-      tap_code(KC_SPC);
-      tap_code(KC_ENT);
-      tap_code(KC_LCTL); // ディレイの代わり
+    //   ng_send_kana(str);
+    //   tap_code(KC_LCTL); tap_code(KC_LSFT); tap_code(KC_LCTL); // ディレイの代わり
+    //   tap_code(KC_SPC);
+    //   tap_code(KC_ENT);
+    //   tap_code(KC_LCTL); // ディレイの代わり
       break;
     default:
       ng_send_kana(str);
@@ -1481,13 +1502,13 @@ void dic_send_string(const char *str) {
 void dic_send_string_with_cut_paste(const char *str) {
   switch (naginata_config.os) {
     case NG_IOS:
-      ng_cut();
-      dic_send_string(str);
-      ng_up(1);     // 1文字戻る
-      tap_code(KC_LCTL); tap_code(KC_LSFT); // ディレイの代わり
-      ng_paste();
-      tap_code(KC_LCTL); tap_code(KC_LSFT); // ディレイの代わり
-      ng_down(1);   // 1文字進む
+    //   ng_cut();
+    //   dic_send_string(str);
+    //   ng_up(1);     // 1文字戻る
+    //   tap_code(KC_LCTL); tap_code(KC_LSFT); // ディレイの代わり
+    //   ng_paste();
+    //   tap_code(KC_LCTL); tap_code(KC_LSFT); // ディレイの代わり
+    //   ng_down(1);   // 1文字進む
       break;
     default:
       ng_cut();
