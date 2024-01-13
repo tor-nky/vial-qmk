@@ -16,6 +16,19 @@
 
 #pragma once
 
+// *************** 薙刀式の設定 ***************
+// 有効にするとスペースキーを離しても文字キーシフト全復活
+// 無効にするとDvorakJ風になる
+// #define NG_USE_SHIFT_WHEN_SPACE_UP
+
+// 後置シフトの時間制限(ms) ※ 無効にすれば時間無制限
+// ※ 有効にするなら薙刀式v15のかな定義を変更しない
+//  (Shift+2キー以上の同時押し、いわゆる冗長シフトをつけないこと)
+//  (1キー単独で出力確定する定義がないこと、つまり編集モードを削らないこと)
+#define NG_KOUCHI_SHIFT_MS 60
+// ********************************************
+
+
 // 互換性
 #if !(defined(IS_QK_KB) || defined(KC_LNG9))
 #   define KC_LANGUAGE_1 KC_LANG1
@@ -79,7 +92,7 @@ typedef uint32_t Ngkey;
 // かな定義配列 ngmap[] の添字の型
 typedef uint_fast16_t Ngmap_num;
 
-bool naginata_type(uint16_t, bool);
+bool naginata_type(uint16_t, keyrecord_t *);
 void end_repeating_key(void);
 
 void ng_space_or_enter(void);
