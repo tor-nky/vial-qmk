@@ -1,7 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later */
 
 #include QMK_KEYBOARD_H
-#include "twpair_on_jis.h"
 
 // 薙刀式
 #include "naginata.h"
@@ -11,6 +10,7 @@ bool update_oled = true;
 bool ng_state = false;
 #endif
 // 薙刀式
+#include "twpair_on_jis.h"
 
 #define _NAGINATA 1 // 薙刀式入力レイヤー
 
@@ -25,6 +25,29 @@ const uint16_t PROGMEM keymaps[1][MATRIX_ROWS][MATRIX_COLS] = {{{
 }}};
 
 const uint16_t PROGMEM encoder_map[1][NUM_ENCODERS][NUM_DIRECTIONS] = {{{KC_MS_U, KC_MS_D}}};
+
+#if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
+layer_state_t layer_state_set_user(layer_state_t state) {
+  if (naginata_state()) {
+    if (naginata_config.tategaki) {
+      rgblight_sethsv_noeeprom(HSV_RED);
+    } else {
+      rgblight_sethsv_noeeprom(HSV_CYAN);
+    }
+  } else {
+    rgblight_sethsv_noeeprom(HSV_GOLD);
+  }
+  return state;
+}
+#endif
+
+void matrix_init_user(void) {
+  // 薙刀式
+  uint16_t ngonkeys[] = {KC_H, KC_J};
+  uint16_t ngoffkeys[] = {KC_F, KC_G};
+  set_naginata(_NAGINATA, ngonkeys, ngoffkeys);
+  // 薙刀式
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   static bool is_us2jis = false;
@@ -77,10 +100,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-void matrix_init_user(void) {
-  // 薙刀式
-  uint16_t ngonkeys[] = {KC_H, KC_J};
-  uint16_t ngoffkeys[] = {KC_F, KC_G};
-  set_naginata(_NAGINATA, ngonkeys, ngoffkeys);
-  // 薙刀式
-}
