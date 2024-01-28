@@ -19,13 +19,13 @@
 // *************** 薙刀式の設定 ***************
 // 有効にするとスペースキーを離しても文字キーシフト全復活
 // 無効にするとDvorakJ風になる
-// #define NG_USE_SHIFT_WHEN_SPACE_UP
+#define NG_USE_SHIFT_WHEN_SPACE_UP
 
 // 後置シフトの時間制限(ms) ※ 無効にすれば時間無制限
 // ※ 有効にするなら薙刀式v15のかな定義を変更しない
 //  (Shift+2キー以上の同時押し、いわゆる冗長シフトをつけないこと)
 //  (1キー単独で出力確定する定義がないこと、つまり編集モードを削らないこと)
-#define NG_KOUCHI_SHIFT_MS 60
+#define NG_KOUCHI_SHIFT_MS 20
 // ********************************************
 
 
@@ -57,7 +57,6 @@
 #   include "bmp_custom_keycode.h" // For BLE Miro Pro old firmware(<1.0.0)
 # endif
 #elif (defined(NG_BMP))
-#   define NG_BMP_VIAL
 #   include "bmp_custom_keycodes.h" // For BLE Miro Pro new firmware(>=1.0.0)
 #endif
 
@@ -75,6 +74,8 @@ void ng_show_os(void);
 void ng_send_unicode_string_P(const char *);
 void mac_live_conversion_toggle(void);
 void tategaki_toggle(void);
+void tategaki_on(void);
+void tategaki_off(void);
 void kouchi_shift_toggle(void);
 
 bool process_naginata(uint16_t, keyrecord_t *);
@@ -123,18 +124,15 @@ void ng_send_kana(const char *str);
 
 #define NG_SEND_KANA(string) ng_send_kana(PSTR(string))
 
+#ifndef QK_NG
+#   define QK_NG QK_USER
+#endif
 
 // なぜKC_キーコードを使わず、NG_キーコードを定義するのか
 // 1. 英字レイアウトがQWERTYでない場合でもOK
 // 2. 薙刀式レイヤーでもKC_を定義すれば、かな変換せず出力できる
 typedef enum naginata_keycodes {
-#if !(defined(NG_BMP))
-  NG_Q = SAFE_RANGE,  // 薙刀式シフトキー
-#elif (defined(NG_BMP_VIAL))
-  NG_Q = BMP_SAFE_RANGE - 4,  // 薙刀式シフトキー // For BLE Miro Pro new firmware(>=1.0.0)
-#else  // 参照: https://github.com/sekigon-gonnoc/vial-qmk/blob/dev/ble-micro-pro/tmk_core/protocol/bmp/bmp_custom_keycodes.h
-  NG_Q = BMP_SAFE_RANGE + 2,  // 薙刀式シフトキー // For BLE Miro Pro old firmware(<1.0.0)
-#endif
+  NG_Q = QK_NG, // 薙刀式シフトキー
   NG_W,
   NG_E,
   NG_R,
@@ -192,6 +190,7 @@ typedef enum naginata_keycodes {
 typedef union {
   uint32_t raw;
   struct {
+    uint8_t key_os_override;
     uint8_t os;
     bool live_conv :1;
     bool tategaki :1;
@@ -201,7 +200,7 @@ typedef union {
 
 user_config_t naginata_config;
 
-#define NG_SAFE_RANGE NG_KOTI + 1
+#define NG_SAFE_RANGE (NG_KOTI + 1)
 
 #define NG_WIN 1
 #define NG_MAC 2
