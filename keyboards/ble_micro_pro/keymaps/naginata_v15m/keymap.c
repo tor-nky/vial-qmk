@@ -62,7 +62,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         is_us2jis = true;
       return false;
     case KC_PEQL:
-      if (naginata_config.os == NG_MAC_DIC || naginata_config.os == NG_IOS)
+      if (naginata_config.os == NG_MAC_BMP || naginata_config.os == NG_IOS_BMP)
         break;
       if (record->event.pressed) {
         if (is_us2jis)
@@ -72,7 +72,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
     case KC_PCMM:
-      if ((naginata_config.os == NG_MAC_DIC || naginata_config.os == NG_IOS) && is_us2jis)
+      if ((naginata_config.os == NG_MAC_BMP || naginata_config.os == NG_IOS_BMP) && is_us2jis)
         break;
       // JISキーボード設定のMacでないなら、「,」を出力する
       if (record->event.pressed)
