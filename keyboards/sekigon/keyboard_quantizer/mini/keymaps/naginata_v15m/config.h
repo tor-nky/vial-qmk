@@ -30,9 +30,6 @@
 
 #define QK_NG (QK_KB_0 + 3) // 薙刀式シフトキーのキーコード開始位置
 
-// Linuxで使うときは下1行を有効にする
-//#define USB_POLLING_INTERVAL_MS 8   // sets the USB polling rate in milliseconds
-//#define TAP_CODE_DELAY 24   // Sets the delay between `register_code` and `unregister_code`
 
 #define NG_USE_KAWASEMI // Mac汎用 → かわせみ専用
 
