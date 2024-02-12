@@ -122,7 +122,7 @@ typedef struct {
 #define NGMAP_COUNT (sizeof ngmap / sizeof ngmap[0])
 
 // かな定義
-// 3キー同時 → 2キー同時 → センターシフト → 単打 の順を推奨
+// 3キー同時 → 2キー同時 → センターシフト → 単打 の順を推奨(単打の後の定義にはシフト復活が起きない)
 // シフト復活判定は、3キー同時と2キー同時の順序で決まる
 // 同じ key の定義が複数ある時は、早期出力がうまくいかない
 const PROGMEM naginata_keymap ngmap[] = {
@@ -1088,7 +1088,7 @@ void ng_cut() {
       tap_code16(LCTL(KC_X));
       break;
     case NG_LINUX:
-      tap_code16_delay(LCTL(KC_X), 72);
+      tap_code16_delay(LCTL(KC_X), LINUX_WAIT_MS);
       break;
     case NG_MAC:
       tap_code16(LCMD(KC_X));
@@ -1113,7 +1113,7 @@ void ng_copy() {
       tap_code16(LCTL(KC_C));
       break;
     case NG_LINUX:
-      tap_code16_delay(LCTL(KC_C), 72);
+      tap_code16_delay(LCTL(KC_C), LINUX_WAIT_MS);
       break;
     case NG_MAC:
       tap_code16(LCMD(KC_C));
@@ -1138,7 +1138,7 @@ void ng_paste() {
       tap_code16(LCTL(KC_V));
       break;
     case NG_LINUX:
-      tap_code16_delay(LCTL(KC_V), 72);
+      tap_code16_delay(LCTL(KC_V), LINUX_WAIT_MS);
       break;
     case NG_MAC:
       register_code(KC_LCMD);
@@ -1228,8 +1228,10 @@ void ng_home() {
   switch (naginata_config.os) {
 #ifndef NG_BMP
     case NG_WIN:
-    case NG_LINUX:
       tap_code(KC_HOME);
+      break;
+    case NG_LINUX:
+      tap_code_delay(KC_HOME, LINUX_WAIT_MS);
       break;
     case NG_MAC:
       tap_code16(LCTL(KC_A));
@@ -1251,8 +1253,10 @@ void ng_end() {
   switch (naginata_config.os) {
 #ifndef NG_BMP
     case NG_WIN:
-    case NG_LINUX:
       tap_code(KC_END);
+      break;
+    case NG_LINUX:
+      tap_code_delay(KC_END, LINUX_WAIT_MS);
       break;
     case NG_MAC:
       tap_code16(LCTL(KC_E));
@@ -1291,7 +1295,7 @@ void ng_save() {
       tap_code16(LCTL(KC_S));
       break;
     case NG_LINUX:
-      tap_code16_delay(LCTL(KC_S), 72);
+      tap_code16_delay(LCTL(KC_S), LINUX_WAIT_MS);
       break;
     case NG_MAC:
       tap_code16(LCMD(KC_S));
@@ -1331,7 +1335,7 @@ void ng_redo() {
       tap_code16(LCTL(KC_Y));
       break;
     case NG_LINUX:
-      tap_code16_delay(LCTL(KC_Y), 72);
+      tap_code16_delay(LCTL(KC_Y), LINUX_WAIT_MS);
       break;
     case NG_MAC:
       tap_code16(LCMD(LSFT(KC_Z)));
@@ -1356,7 +1360,7 @@ void ng_undo() {
       tap_code16(LCTL(KC_Z));
       break;
     case NG_LINUX:
-      tap_code16_delay(LCTL(KC_Z), 72);
+      tap_code16_delay(LCTL(KC_Z), LINUX_WAIT_MS);
       break;
     case NG_MAC:
       tap_code16(LCMD(KC_Z));
@@ -1411,7 +1415,7 @@ void ng_eof() {
       tap_code16(LCTL(KC_END));
       break;
     case NG_LINUX:
-      tap_code16_delay(LCTL(KC_END), 72);
+      tap_code16_delay(LCTL(KC_END), LINUX_WAIT_MS);
       break;
     case NG_MAC:
       if (naginata_config.tategaki)
