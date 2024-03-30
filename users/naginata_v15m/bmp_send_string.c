@@ -21,6 +21,7 @@
 #define MAX_QUEUE   1024
 #define INTERVAL_MS 8
 
+#if defined(NG_BMP)
 // キュー
 static char queue[MAX_QUEUE];
 static char *queue_begin = queue,
@@ -115,3 +116,4 @@ void bmp_append_string(const char *string) {
 void housekeeping_task_user(void) {
     bmp_send_loop();
 }
+#endif

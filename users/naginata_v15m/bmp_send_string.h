@@ -14,10 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// #include <stdint.h>
-
-// #include "send_string_keycodes.h"
-
+#if defined(NG_BMP)
 /**
  * \brief Type out a string of ASCII characters.
  *
@@ -26,3 +23,4 @@
  * \param string The string to type out.
  */
 void bmp_append_string(const char *string);
+#endif
