@@ -93,8 +93,6 @@ void ng_saihenkan(void);
 void ng_eof(void);
 void ng_ime_cancel(void);
 void ng_ime_complete(void);
-void dic_send_string(const char *);
-void dic_send_string_with_cut_paste(const char *);
 
 #ifndef QK_NG
 #   define QK_NG QK_USER
@@ -148,7 +146,7 @@ typedef enum naginata_keycodes {
   NGSW_WIN,
   NGSW_MAC,
   NGSW_LNX,
-#ifdef NG_BMP
+#if defined(NG_BMP)
   NGSW_IOS,
 #else
   NG_MLV,

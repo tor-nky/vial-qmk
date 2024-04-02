@@ -17,43 +17,63 @@
 #include QMK_KEYBOARD_H
 #include <ctype.h>
 #include <string.h>
+// #include "state_controller.h"
 
-#define MAX_QUEUE   1024
-#define INTERVAL_MS 8
+#define QUEUE_SIZE_MAX  1024
+#define INTERVAL_TICK   8
 
-#if defined(NG_BMP)
 // キュー
-static char queue[MAX_QUEUE];
+static char queue[QUEUE_SIZE_MAX];
 static char *queue_begin = queue,
             *queue_end = queue;
 static unsigned queue_size = 0;
 // 時間記録
-static uint16_t last_send_time = 0;
-static uint16_t delay = 0;
+static uint32_t last_read_time = 0;
+
+// キューに文字列を追加
+void bmp_append_string(const char *string) {
+    int string_size = strlen(string);
+    // もし十分な空きがないなら何もしない
+    if (!string_size || string_size > (QUEUE_SIZE_MAX) - queue_size) return;
+
+    queue_size += string_size;
+    unsigned after_size = queue + QUEUE_SIZE_MAX - queue_end;
+    // 折り返す必要あり
+    if (string_size > after_size) {
+        memcpy(queue_end, string, after_size);
+        string_size -= after_size;
+        memcpy(queue, string + after_size, string_size);
+        queue_end = queue + string_size;
+    } else {
+        memcpy(queue_end, string, string_size);
+        queue_end += string_size;
+    }
+}
 
 // キューの先頭から一個取り出す
 static char front_pop(void) {
+    // キューが空なら退出
     if (!queue_size) return '\0';
 
     char keycode = *queue_begin;
     queue_begin++;
     queue_size--;
-    if (queue_begin == queue + MAX_QUEUE) {
+    if (queue_begin == queue + QUEUE_SIZE_MAX) {
         queue_begin = queue;
     }
     return keycode;
 }
 
 // キュー内の文字列の送出
-static void bmp_send_loop(void) {
-    uint16_t elapsed_time = timer_elapsed(last_send_time);
-    if (elapsed_time < delay) {
-        return;
-    }
+// 参考: quantum/send_string/send_string.c
+void bmp_send_loop(void) {
+    static uint32_t interval = 0;
+    // 時間が来なければ退出
+    if (timer_elapsed32(last_read_time) < interval) return;
 
-    last_send_time = timer_read();
-    delay = 0;
-    while (delay < 60) {
+    last_read_time = timer_read32();
+    interval = 0;
+    while (interval < (INTERVAL_TICK) * 12) {
         char ascii_code = front_pop();
         if (!ascii_code) break;
         if (ascii_code == SS_QMK_PREFIX) {
@@ -62,17 +82,17 @@ static void bmp_send_loop(void) {
                 // tap
                 uint8_t keycode = front_pop();
                 tap_code(keycode);
-                delay += (INTERVAL_MS) * 2;
+                interval += (INTERVAL_TICK) * 2;
             } else if (ascii_code == SS_DOWN_CODE) {
                 // down
                 uint8_t keycode = front_pop();
                 register_code(keycode);
-                delay += INTERVAL_MS;
+                interval += INTERVAL_TICK;
             } else if (ascii_code == SS_UP_CODE) {
                 // up
                 uint8_t keycode = front_pop();
                 unregister_code(keycode);
-                delay += INTERVAL_MS;
+                interval += INTERVAL_TICK;
             } else if (ascii_code == SS_DELAY_CODE) {
                 // delay
                 int     ms      = 0;
@@ -82,33 +102,16 @@ static void bmp_send_loop(void) {
                     ms += keycode - '0';
                     keycode = front_pop();
                 }
-                delay += ms;
-                return;
+                interval += ms;
+                break;
             }
         } else {
             send_char(ascii_code);
-            delay += INTERVAL_MS;
+            interval += (INTERVAL_TICK) * 2;
         }
     }
-}
-
-// キューに文字列を追加
-void bmp_append_string(const char *string) {
-    int string_size = strlen(string);
-    // もし十分な空きがないなら何もしない
-    if (string_size > (MAX_QUEUE) - queue_size) return;
-
-    queue_size += string_size;
-    unsigned buffer_after_size = queue + MAX_QUEUE - queue_end;
-    // 折り返す必要あり
-    if (string_size > buffer_after_size) {
-        memcpy(queue_end, string, buffer_after_size);
-        string_size -= buffer_after_size;
-        memcpy(queue, string + buffer_after_size, string_size);
-        queue_end = queue + string_size;
-    } else {
-        memcpy(queue_end, string, string_size);
-        queue_end += string_size;
+    if (interval) {
+        BMPAPI->app.schedule_next_task(interval);
     }
 }
 
@@ -116,4 +119,3 @@ void bmp_append_string(const char *string) {
 void housekeeping_task_user(void) {
     bmp_send_loop();
 }
-#endif

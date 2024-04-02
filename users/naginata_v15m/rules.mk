@@ -7,4 +7,3 @@ SRC +=  naginata_v15m.c
 SRC +=  naginata_parts.c
 SRC +=	unicode_P.c
 SRC +=  twpair_on_jis.c
-SRC +=	bmp_send_string.c
