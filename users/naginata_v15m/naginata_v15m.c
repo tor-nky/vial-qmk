@@ -427,8 +427,8 @@ void naginata_on(void) {
   is_naginata = true;
   layer_on(naginata_layer);
 
-  switch (naginata_config.os) {
 #if !defined(NG_BMP)
+  switch (naginata_config.os) {
     case NG_WIN:
     case NG_LINUX:
       tap_code(KC_INTERNATIONAL_2); // ひらがな
@@ -437,17 +437,20 @@ void naginata_on(void) {
     case NG_MAC:
       tap_code(KC_LANGUAGE_1);      // (Mac)かな
       break;
+  }
 #else
+  switch (naginata_config.os) {
     case NG_WIN_BMP:
     case NG_LINUX_BMP:
-      bmp_append_string(SS_TAP(X_INTERNATIONAL_2)SS_TAP(X_INTERNATIONAL_2));  // ひらがなx2
+      tap_code(KC_INTERNATIONAL_2); // ひらがな
+      tap_code(KC_INTERNATIONAL_2);
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
-      bmp_append_string(SS_TAP(X_LANGUAGE_1));  // (Mac)かな
+      tap_code(KC_LANGUAGE_1);      // (Mac)かな
       break;
-#endif
   }
+#endif
 }
 
 // 薙刀式をオフ
@@ -458,8 +461,8 @@ void naginata_off(void) {
   naginata_clear();
   layer_off(naginata_layer);
 
-  switch (naginata_config.os) {
 #if !defined(NG_BMP)
+  switch (naginata_config.os) {
     case NG_WIN:
     case NG_LINUX:
       // 確定→ひらがな→半角/全角
@@ -470,17 +473,22 @@ void naginata_off(void) {
     case NG_MAC:
       tap_code(KC_LANGUAGE_2);  // (Mac)英数
       break;
+  }
 #else
+  switch (naginata_config.os) {
     case NG_WIN_BMP:
     case NG_LINUX_BMP:
-      bmp_append_string(SS_TAP(X_INTERNATIONAL_2)SS_TAP(X_GRAVE));  // ひらがな → 半角/全角
+      // 確定→ひらがな→半角/全角
+      tap_code16_delay(LSFT(LCTL(KC_INTERNATIONAL_4)), 8); // Shift+Ctrl+変換
+      tap_code(KC_INTERNATIONAL_2); // ひらがな
+      tap_code(KC_GRAVE); // 半角/全角
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
-      bmp_append_string(SS_TAP(X_LANGUAGE_2));  // (Mac)英数
+      tap_code(KC_LANGUAGE_2);  // (Mac)英数
       break;
-#endif
   }
+#endif
 }
 
 // 薙刀式のon/off状態を返す
