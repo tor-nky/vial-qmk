@@ -17,7 +17,6 @@
 #include QMK_KEYBOARD_H
 #include <ctype.h>
 #include <string.h>
-// #include "state_controller.h"
 
 #define QUEUE_SIZE_MAX  1024
 #define INTERVAL_TICK   8
@@ -27,11 +26,9 @@ static char queue[QUEUE_SIZE_MAX];
 static char *queue_begin = queue,
             *queue_end = queue;
 static unsigned queue_size = 0;
-// 時間記録
-static uint32_t last_read_time = 0;
 
 // キューに文字列を追加
-void bmp_append_string(const char *string) {
+static void bmp_append_string(const char *string) {
     int string_size = strlen(string);
     // もし十分な空きがないなら何もしない
     if (!string_size || string_size > (QUEUE_SIZE_MAX) - queue_size) return;
@@ -66,7 +63,8 @@ static char front_pop(void) {
 
 // キュー内の文字列の送出
 // 参考: quantum/send_string/send_string.c
-void bmp_send_loop(void) {
+static void bmp_send_loop(void) {
+    static uint32_t last_read_time = 0;
     static uint32_t interval = 0;
     // 時間が来なければ退出
     if (timer_elapsed32(last_read_time) < interval) return;
@@ -102,7 +100,7 @@ void bmp_send_loop(void) {
                     ms += keycode - '0';
                     keycode = front_pop();
                 }
-                interval += ms;
+                interval += ms < INTERVAL_TICK ? INTERVAL_TICK : ms;
                 break;
             }
         } else {
@@ -110,12 +108,20 @@ void bmp_send_loop(void) {
             interval += (INTERVAL_TICK) * 2;
         }
     }
+    // Bluetooth接続時の次回呼び出し間隔を設定
     if (interval) {
         BMPAPI->app.schedule_next_task(interval);
     }
 }
 
+// 文字列の出力
+// 文字が一定数を超えたり、ディレイがあると遅延書き出し
+void bmp_send_string(const char *string) {
+    bmp_append_string(string);
+    bmp_send_loop();
+}
+
 // 全ての QMK 処理の最後に、次の繰り返しを開始する前に呼び出される関数
-void housekeeping_task_user(void) {
+void housekeeping_task_kb(void) {
     bmp_send_loop();
 }

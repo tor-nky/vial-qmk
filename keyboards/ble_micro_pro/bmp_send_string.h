@@ -21,5 +21,4 @@
  *
  * \param string The string to type out.
  */
-void bmp_append_string(const char *string);
-void bmp_send_loop(void);
+void bmp_send_string(const char *string);

@@ -47,16 +47,16 @@ void copy_spc_to_clipboard(void) {
         // 動作しないので省略
         break;
     case NG_IOS_BMP:
-        bmp_append_string(" "SS_DELAY(BMP_DELAY));
-        bmp_append_string(SS_DOWN(X_LSFT));
+        bmp_send_string(" "SS_DELAY(BMP_DELAY));
+        bmp_send_string(SS_DOWN(X_LSFT));
         ng_up(1);
-        bmp_append_string(SS_UP(X_LSFT));
+        bmp_send_string(SS_UP(X_LSFT));
         ng_cut();
         break;
     default:
-        bmp_append_string(" "SS_DOWN(X_LSFT));
+        bmp_send_string(" "SS_DOWN(X_LSFT));
         ng_up(1);
-        bmp_append_string(SS_UP(X_LSFT));
+        bmp_send_string(SS_UP(X_LSFT));
         ng_cut();
         break;
     }
@@ -768,12 +768,12 @@ void ng_send_tsa(void) {    // つぁ
 void dic_send_string(const char *str) {
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_append_string(str);
-        bmp_append_string(SS_DELAY(BMP_DELAY)" \n"SS_DELAY(BMP_DELAY));
+        bmp_send_string(str);
+        bmp_send_string(SS_DELAY(BMP_DELAY)" \n"SS_DELAY(BMP_DELAY));
         break;
     default:
-        bmp_append_string(str);
-        bmp_append_string(" \n");
+        bmp_send_string(str);
+        bmp_send_string(" \n");
         break;
     }
 }
@@ -786,7 +786,7 @@ void dic_send_string_with_cut_paste(const char *str) {
     ng_down(1);   // 1文字進む
     copy_spc_to_clipboard();
 }
-#       define NG_SEND_KANA(string) bmp_append_string(string)
+#       define NG_SEND_KANA(string) bmp_send_string(string)
 #   else
 // 文字列を少し速く出力
 void ng_send_kana(const char *str) {
@@ -1375,11 +1375,11 @@ void ng_edit_touten(void) { // 、
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_append_string(",");
+        bmp_send_string(",");
         ng_ime_complete();
         break;
     default:
-        bmp_append_string(",\n");
+        bmp_send_string(",\n");
         break;
     }
 #endif
@@ -1391,11 +1391,11 @@ void ng_edit_kuten(void) { // 。
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_append_string(".");
+        bmp_send_string(".");
         ng_ime_complete();
         break;
     default:
-        bmp_append_string(".\n");
+        bmp_send_string(".\n");
         break;
     }
 #endif
@@ -1404,7 +1404,7 @@ void ng_enter(void) { // {Enter}
 #if !defined(NG_BMP)
     tap_code(KC_ENTER);
 #else
-    bmp_append_string("\n");
+    bmp_send_string("\n");
 #endif
 }
 
@@ -1413,7 +1413,7 @@ void ng_symbol_chuuten(void) { // ・
 #if !defined(NG_BMP)
     tap_code(KC_SLASH);
 #else
-    bmp_append_string("/");
+    bmp_send_string("/");
 #endif
 }
 void ng_edit_question(void) { // ？{改行}
@@ -1423,11 +1423,11 @@ void ng_edit_question(void) { // ？{改行}
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_append_string(SS_LSFT("/"));
+        bmp_send_string(SS_LSFT("/"));
         ng_ime_complete();
         break;
     default:
-        bmp_append_string(SS_LSFT("/")"\n");
+        bmp_send_string(SS_LSFT("/")"\n");
         break;
     }
 #endif
@@ -1439,11 +1439,11 @@ void ng_edit_exclaim(void) { // ！{改行}
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_append_string(SS_LSFT("1"));
+        bmp_send_string(SS_LSFT("1"));
         ng_ime_complete();
         break;
     default:
-        bmp_append_string(SS_LSFT("1")"\n");
+        bmp_send_string(SS_LSFT("1")"\n");
         break;
     }
 #endif
@@ -1454,12 +1454,12 @@ void ng_edit_slash(void) { // ／{改行}
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_append_string(SS_LOPT("/"));
+        bmp_send_string(SS_LOPT("/"));
         ng_ime_complete();
         break;
     default:
         ng_ime_complete();
-        bmp_append_string("/"SS_TAP(X_F9)"\n");
+        bmp_send_string("/"SS_TAP(X_F9)"\n");
         break;
     }
 #endif
@@ -1486,7 +1486,7 @@ void ng_edit_tenten(void) { // ……{改行}
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_append_string(SS_LOPT(";;"));
+        bmp_send_string(SS_LOPT(";;"));
         ng_ime_complete();
         break;
     default:
@@ -1509,9 +1509,9 @@ void ng_edit_separate_line(void) { // 　　　×　　　×　　　×{改行 2
     ng_send_unicode_string_P(PSTR("　　　×　　　×　　　×"));
     tap_code(KC_ENTER);
 #else
-    bmp_append_string("   ");
+    bmp_send_string("   ");
     dic_send_string("nagibatu"); // "　　　×　　　×　　　×"
-    bmp_append_string("\n");
+    bmp_send_string("\n");
 #endif
 }
 
@@ -1576,10 +1576,10 @@ void ng_edit_delete_to_end(void) { // +{End}{BS}
     del_mods(MOD_BIT(KC_LEFT_SHIFT));
     tap_code(KC_BACKSPACE);
 #else
-    bmp_append_string(SS_DOWN(X_LSFT));
+    bmp_send_string(SS_DOWN(X_LSFT));
     ng_end();
-    bmp_append_string(SS_UP(X_LSFT));
-    bmp_append_string("\b");
+    bmp_send_string(SS_UP(X_LSFT));
+    bmp_send_string("\b");
 #endif
 }
 void ng_edit_s_home(void) { // +{Home}
@@ -1588,9 +1588,9 @@ void ng_edit_s_home(void) { // +{Home}
     ng_home();
     del_mods(MOD_BIT(KC_LEFT_SHIFT));
 #else
-    bmp_append_string(SS_DOWN(X_LSFT));
+    bmp_send_string(SS_DOWN(X_LSFT));
     ng_home();
-    bmp_append_string(SS_UP(X_LSFT));
+    bmp_send_string(SS_UP(X_LSFT));
 #endif
 }
 void ng_edit_s_end(void) { // +{End}
@@ -1599,9 +1599,9 @@ void ng_edit_s_end(void) { // +{End}
     ng_end();
     del_mods(MOD_BIT(KC_LEFT_SHIFT));
 #else
-    bmp_append_string(SS_DOWN(X_LSFT));
+    bmp_send_string(SS_DOWN(X_LSFT));
     ng_end();
-    bmp_append_string(SS_UP(X_LSFT));
+    bmp_send_string(SS_UP(X_LSFT));
 #endif
 }
 
@@ -1611,7 +1611,7 @@ void ng_edit_3_space(void) { // {Space 3}
     tap_code(KC_SPACE);
     tap_code(KC_SPACE);
 #else
-    bmp_append_string("   ");
+    bmp_send_string("   ");
 #endif
 }
 void ng_edit_togaki(void) { // {Home}{改行}{Space 3}{←}
@@ -1624,7 +1624,7 @@ void ng_edit_togaki(void) { // {Home}{改行}{Space 3}{←}
     ng_left(1);
 #else
     ng_home();
-    bmp_append_string("\n   ");
+    bmp_send_string("\n   ");
     ng_left(1);
 #endif
 }
@@ -1636,7 +1636,7 @@ void ng_edit_serifu(void) { // {Home}{改行}{Space 1}{←}
     ng_left(1);
 #else
     ng_home();
-    bmp_append_string("\n ");
+    bmp_send_string("\n ");
     ng_left(1);
 #endif
 }
@@ -1654,7 +1654,7 @@ void ng_edit_togaki_zengyo(void) { // {Home}{→}{End}{Del 4}{←}
     ng_home();
     ng_right(1);
     ng_end();
-    bmp_append_string("\b\b\b\b");
+    bmp_send_string("\b\b\b\b");
     ng_left(1);
 #endif
 }
@@ -1670,7 +1670,7 @@ void ng_edit_serifu_zengyo(void) { // {Home}{→}{End}{Del 2}{←}
     ng_home();
     ng_right(1);
     ng_end();
-    bmp_append_string("\b\b");
+    bmp_send_string("\b\b");
     ng_left(1);
 #endif
 }
@@ -1682,11 +1682,11 @@ void ng_edit_maru_kakko(void) { // (){改行}{↑}
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_append_string(SS_LSFT("89")SS_DELAY(BMP_DELAY)"\n");
+        bmp_send_string(SS_LSFT("89")SS_DELAY(BMP_DELAY)"\n");
         ng_up(1);
         break;
     default:
-        bmp_append_string(SS_LSFT("89")"\n");
+        bmp_send_string(SS_LSFT("89")"\n");
         ng_up(1);
         break;
     }
@@ -1699,11 +1699,11 @@ void ng_edit_kagi_kakko(void) { // 「」{改行}{↑}
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_append_string("]"SS_TAP(X_NUHS)SS_DELAY(BMP_DELAY)"\n");
+        bmp_send_string("]"SS_TAP(X_NUHS)SS_DELAY(BMP_DELAY)"\n");
         ng_up(1);
         break;
     default:
-        bmp_append_string("]"SS_TAP(X_NUHS)"\n");
+        bmp_send_string("]"SS_TAP(X_NUHS)"\n");
         ng_up(1);
         break;
     }
@@ -1716,7 +1716,7 @@ void ng_edit_nijuu_yama_gakko(void) { // 『』{改行}{↑}
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_append_string(SS_LSFT("]"SS_TAP(X_NUHS))SS_DELAY(BMP_DELAY)"\n");
+        bmp_send_string(SS_LSFT("]"SS_TAP(X_NUHS))SS_DELAY(BMP_DELAY)"\n");
         ng_up(1);
         break;
     default:
@@ -1759,13 +1759,13 @@ void ng_edit_next_line_kagi_kakko(void) { // {改行}{End}{改行}「」{改行}
     case NG_IOS_BMP:
         ng_ime_complete();
         ng_end();
-        bmp_append_string("\n]"SS_TAP(X_NUHS)SS_DELAY(BMP_DELAY)"\n");
+        bmp_send_string("\n]"SS_TAP(X_NUHS)SS_DELAY(BMP_DELAY)"\n");
         ng_up(1);
         break;
     default:
         ng_ime_complete();
         ng_end();
-        bmp_append_string("\n]"SS_TAP(X_NUHS)"\n");
+        bmp_send_string("\n]"SS_TAP(X_NUHS)"\n");
         ng_up(1);
         break;
     }
@@ -1780,7 +1780,7 @@ void ng_edit_next_line_space(void) { // {改行}{End}{改行}{Space}
 #else
     ng_ime_complete();
     ng_end();
-    bmp_append_string("¥n ");
+    bmp_send_string("¥n ");
 #endif
 }
 
@@ -1795,7 +1795,7 @@ void ng_edit_surround_maru_kakko(void) { // ^x(^v){改行}{Space}+{↑}^x
     switch (naginata_config.os) {
     case NG_IOS_BMP:
         ng_cut();
-        bmp_append_string(SS_LSFT("89")SS_DELAY(BMP_DELAY)"\n");
+        bmp_send_string(SS_LSFT("89")SS_DELAY(BMP_DELAY)"\n");
         ng_up(1);
         ng_paste();
         ng_down(1);
@@ -1803,7 +1803,7 @@ void ng_edit_surround_maru_kakko(void) { // ^x(^v){改行}{Space}+{↑}^x
         break;
     default:
         ng_cut();
-        bmp_append_string(SS_LSFT("89")"\n");
+        bmp_send_string(SS_LSFT("89")"\n");
         ng_up(1);
         ng_paste();
         ng_down(1);
@@ -1823,7 +1823,7 @@ void ng_edit_surround_kagi_kakko(void) { // ^x「^v」{改行}{Space}+{↑}^x
     switch (naginata_config.os) {
     case NG_IOS_BMP:
         ng_cut();
-        bmp_append_string("]"SS_TAP(X_NUHS)SS_DELAY(BMP_DELAY)"\n");
+        bmp_send_string("]"SS_TAP(X_NUHS)SS_DELAY(BMP_DELAY)"\n");
         ng_up(1);
         ng_paste();
         ng_down(1);
@@ -1831,7 +1831,7 @@ void ng_edit_surround_kagi_kakko(void) { // ^x「^v」{改行}{Space}+{↑}^x
         break;
     default:
         ng_cut();
-        bmp_append_string("]"SS_TAP(X_NUHS)"\n");
+        bmp_send_string("]"SS_TAP(X_NUHS)"\n");
         ng_up(1);
         ng_paste();
         ng_down(1);
@@ -1851,7 +1851,7 @@ void ng_edit_surround_nijuu_yama_gakko(void) { // ^x『^v』{改行}{Space}+{↑
     switch (naginata_config.os) {
     case NG_IOS_BMP:
         ng_cut();
-        bmp_append_string(SS_LSFT("]"SS_TAP(X_NUHS))SS_DELAY(BMP_DELAY)"\n");
+        bmp_send_string(SS_LSFT("]"SS_TAP(X_NUHS))SS_DELAY(BMP_DELAY)"\n");
         ng_up(1);
         ng_paste();
         ng_down(1);
