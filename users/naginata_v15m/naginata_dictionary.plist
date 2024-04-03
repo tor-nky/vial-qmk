@@ -40,12 +40,6 @@
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>｜《》</string>
-		<key>shortcut</key>
-		<string>なぎる</string>
-	</dict>
-	<dict>
-		<key>phrase</key>
 		<string>○</string>
 		<key>shortcut</key>
 		<string>なぎまる</string>
