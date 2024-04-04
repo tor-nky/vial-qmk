@@ -778,7 +778,9 @@ void dic_send_string(const char *str) {
     switch (naginata_config.os) {
     case NG_IOS_BMP:
         bmp_send_string(str);
-        bmp_send_string(SS_DELAY(BMP_DELAY)" \n"SS_DELAY(BMP_DELAY));
+        bmp_send_string(SS_DELAY(BMP_DELAY));
+        bmp_send_string(" ");
+        ng_ime_complete();
         break;
     default:
         bmp_send_string(str);
@@ -1717,7 +1719,8 @@ void ng_edit_maru_kakko(void) { // (){改行}{↑}
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_send_string(SS_LSFT("89")SS_DELAY(BMP_DELAY)"\n");  // for JIS Keyboard
+        bmp_send_string(SS_LSFT("89")); // for JIS Keyboard
+        ng_ime_complete();
         ng_up(1);
         break;
     default:
@@ -1734,7 +1737,8 @@ void ng_edit_kagi_kakko(void) { // 「」{改行}{↑}
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_send_string("]"SS_TAP(X_NUHS)SS_DELAY(BMP_DELAY)"\n");  // for JIS Keyboard
+        bmp_send_string("]"SS_TAP(X_NUHS)); // for JIS Keyboard
+        ng_ime_complete();
         ng_up(1);
         break;
     default:
@@ -1751,7 +1755,8 @@ void ng_edit_nijuu_yama_gakko(void) { // 『』{改行}{↑}
 #else
     switch (naginata_config.os) {
     case NG_IOS_BMP:
-        bmp_send_string(SS_LSFT("]"SS_TAP(X_NUHS))SS_DELAY(BMP_DELAY)"\n"); // for JIS Keyboard
+        bmp_send_string(SS_LSFT("]"SS_TAP(X_NUHS)));    // for JIS Keyboard
+        ng_ime_complete();
         ng_up(1);
         break;
     default:
@@ -1794,7 +1799,8 @@ void ng_edit_next_line_kagi_kakko(void) { // {改行}{End}{改行}「」{改行}
     case NG_IOS_BMP:
         ng_ime_complete();
         ng_end();
-        bmp_send_string("\n]"SS_TAP(X_NUHS)SS_DELAY(BMP_DELAY)"\n");    // for JIS Keyboard
+        bmp_send_string("\n]"SS_TAP(X_NUHS));   // for JIS Keyboard
+        ng_ime_complete();
         ng_up(1);
         break;
     default:
@@ -1830,7 +1836,8 @@ void ng_edit_surround_maru_kakko(void) { // ^x(^v){改行}{Space}+{↑}^x
     switch (naginata_config.os) {
     case NG_IOS_BMP:
         ng_cut();
-        bmp_send_string(SS_LSFT("89")SS_DELAY(BMP_DELAY)"\n");  // for JIS Keyboard
+        bmp_send_string(SS_LSFT("89")); // for JIS Keyboard
+        ng_ime_complete();
         ng_up(1);
         ng_paste();
         ng_down(1);
@@ -1858,7 +1865,8 @@ void ng_edit_surround_kagi_kakko(void) { // ^x「^v」{改行}{Space}+{↑}^x
     switch (naginata_config.os) {
     case NG_IOS_BMP:
         ng_cut();
-        bmp_send_string("]"SS_TAP(X_NUHS)SS_DELAY(BMP_DELAY)"\n");  // for JIS Keyboard
+        bmp_send_string("]"SS_TAP(X_NUHS)); // for JIS Keyboard
+        ng_ime_complete();
         ng_up(1);
         ng_paste();
         ng_down(1);
@@ -1886,7 +1894,8 @@ void ng_edit_surround_nijuu_yama_gakko(void) { // ^x『^v』{改行}{Space}+{↑
     switch (naginata_config.os) {
     case NG_IOS_BMP:
         ng_cut();
-        bmp_send_string(SS_LSFT("]"SS_TAP(X_NUHS))SS_DELAY(BMP_DELAY)"\n"); // for JIS Keyboard
+        bmp_send_string(SS_LSFT("]"SS_TAP(X_NUHS)));    // for JIS Keyboard
+        ng_ime_complete();
         ng_up(1);
         ng_paste();
         ng_down(1);
