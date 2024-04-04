@@ -46,7 +46,7 @@ void copy_spc_to_clipboard(void) {
     switch (naginata_config.os) {
     case NG_LINUX_BMP:
         if (get_usb_enabled()) {
-            bmp_send_string(SS_DOWN(X_SPC)SS_DELAY(16)SS_UP(X_SPC));
+            bmp_send_string(" "SS_DELAY(16));
             bmp_send_string(SS_DOWN(X_LSFT));
             ng_up(1);
             bmp_send_string(SS_UP(X_LSFT));
