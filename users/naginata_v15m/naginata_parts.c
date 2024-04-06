@@ -801,6 +801,12 @@ void dic_send_string_with_cut_paste(const char *str) {
 #   else
 // 文字列を少し速く出力
 void ng_send_kana(const char *str) {
+    // Macでは押していないカーソルキーがなぜか入力されることがあるので、普通の方法で出力
+    if (naginata_config.os == NG_MAC) {
+        send_string(str);
+        return;
+    }
+
     // 取り出し
     char ascii_code = pgm_read_byte(str++);
     while (ascii_code != '\0') {
