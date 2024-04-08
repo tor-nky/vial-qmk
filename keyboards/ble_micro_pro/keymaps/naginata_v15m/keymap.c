@@ -4,15 +4,9 @@
 
 // 薙刀式
 #include "naginata.h"
-NGKEYS naginata_keys;
-#ifdef OLED_ENABLE
-bool update_oled = true;
-bool ng_state = false;
-#endif
-// 薙刀式
-#include "twpair_on_jis.h"
-
 #define _NAGINATA 1 // 薙刀式入力レイヤー
+// 薙刀式
+
 
 // Defines the keycodes used by our macros in process_record_user
 enum custom_keycodes {
@@ -50,53 +44,10 @@ void matrix_init_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  static bool is_us2jis = true;
-
-  switch (keycode) {
-    case US_KEY:
-      if (record->event.pressed)
-        is_us2jis = false;
-      return false;
-    case US2JIS:
-      if (record->event.pressed)
-        is_us2jis = true;
-      return false;
-    case KC_PEQL:
-      if (naginata_config.os == NG_MAC_BMP || naginata_config.os == NG_IOS_BMP)
-        break;
-      if (record->event.pressed) {
-        if (is_us2jis)
-          tap_code16(LSFT(KC_MINS));
-        else
-          tap_code(KC_EQL);
-      }
-      return false;
-    case KC_PCMM:
-      if ((naginata_config.os == NG_MAC_BMP || naginata_config.os == NG_IOS_BMP) && is_us2jis)
-        break;
-      // JISキーボード設定のMacでないなら、「,」を出力する
-      if (record->event.pressed)
-        tap_code(KC_COMM);
-      return false;
-// 薙刀式 OLEDを使う場合
-#ifdef OLED_ENABLE
-    case NGSW_WIN...NG_KOTI:
-      if (record->event.pressed)
-        update_oled = true; // 設定をOLED表示に反映する
-      break;
-#endif
-// 薙刀式
-  }
-
   // 薙刀式
   if (!process_naginata(keycode, record))
     return false;
   // 薙刀式
 
-  // typewriter pairing on jis keyboard
-  if (is_us2jis && !twpair_on_jis(keycode, record))
-    return false;
-
   return true;
 }
-

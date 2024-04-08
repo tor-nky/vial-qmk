@@ -32,14 +32,9 @@
 
 // 薙刀式
 #include "naginata.h"
-NGKEYS naginata_keys;
-#ifdef OLED_ENABLE
-bool update_oled = true;
-bool ng_state = false;
-#endif
+#define _NAGINATA 1 // 薙刀式入力レイヤー
 // 薙刀式
 
-#define _NAGINATA 1 // 薙刀式入力レイヤー
 
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {{

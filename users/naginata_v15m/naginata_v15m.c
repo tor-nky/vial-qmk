@@ -734,13 +734,13 @@ bool process_naginata(uint16_t keycode, keyrecord_t *record) {
   // OS切り替え(UNICODE出力)
   if (record->event.pressed) {
     switch (keycode) {
+#if !defined(NG_BMP)
       case NG_ON:
         naginata_on();
         return false;
       case NG_OFF:
         naginata_off();
         return false;
-#if !defined(NG_BMP)
       case NG_CLR:
         naginata_clear();
         return false;

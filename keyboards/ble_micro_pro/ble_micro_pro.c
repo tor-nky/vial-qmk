@@ -3,16 +3,14 @@
 #include "ble_micro_pro.h"
 
 #include "bmp.h"
-#include "bmp_custom_keycodes.h"
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-    bool cont = true;
-    if (keycode <= BATT_LV) {
-        cont = process_record_bmp(keycode, record);
-    }
+    bool cont = process_record_bmp(keycode, record);
+
     if (cont) {
         cont = process_record_user(keycode, record);
     }
+
     return cont;
 }
 

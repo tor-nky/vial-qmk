@@ -8,4 +8,4 @@
 
 // BMP用薙刀式
 #define NG_BMP
-#define QK_NG (BMP_SAFE_RANGE - 4) // 薙刀式シフトキーのキーコード開始位置
+#define QK_NG BMP_SAFE_RANGE    // 薙刀式シフトキーのキーコード開始位置

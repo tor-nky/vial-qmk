@@ -138,9 +138,9 @@ typedef enum naginata_keycodes {
   NG_SHFT,
   NG_SHFT2,
 
+#ifndef NG_BMP
   NG_ON,
   NG_OFF,
-#ifndef NG_BMP
   NG_CLR,
 #endif
   NGSW_WIN,

@@ -110,219 +110,219 @@
       "shortName": "BATT\nLV"
     },
     {
+      "name": "ENT_SLP",
+      "title": "Enter deep sleep mode",
+      "shortName": "ENT\nSLP"
+    },
+    {
+      "name": "DISABLE_KEY_OS_OVERRIDE",
+      "title": "Disable key overrides for JP/US OS",
+      "shortName": "D\nOVR"
+    },
+    {
+      "name": "ENABLE_US_KEY_ON_JP_OS_OVERRIDE",
+      "title": "Enable US keyboard on JP OS override",
+      "shortName": "UJ\nOVR"
+    },
+    {
+      "name": "ENABLE_JP_KEY_ON_US_OS_OVERRIDE",
+      "title": "Enable JP keyboard on US OS override",
+      "shortName": "JU\nOVR"
+    },
+    {
       "name": "NG_Q",
       "title": "Naginata System Key Q",
-      "shortName": "NG_Q"
+      "shortName": "NG\nQ"
     },
     {
       "name": "NG_W",
       "title": "Naginata System Key W",
-      "shortName": "NG_W"
+      "shortName": "NG\nW"
     },
     {
       "name": "NG_E",
       "title": "Naginata System Key E",
-      "shortName": "NG_E"
+      "shortName": "NG\nE"
     },
     {
       "name": "NG_R",
       "title": "Naginata System Key R",
-      "shortName": "NG_R"
+      "shortName": "NG\nR"
     },
     {
       "name": "NG_T",
       "title": "Naginata System Key T",
-      "shortName": "NG_T"
+      "shortName": "NG\nT"
     },
     {
       "name": "NG_Y",
       "title": "Naginata System Key Y",
-      "shortName": "NG_Y"
+      "shortName": "NG\nY"
     },
     {
       "name": "NG_U",
       "title": "Naginata System Key U",
-      "shortName": "NG_U"
+      "shortName": "NG\nU"
     },
     {
       "name": "NG_I",
       "title": "Naginata System Key I",
-      "shortName": "NG_I"
+      "shortName": "NG\nI"
     },
     {
       "name": "NG_O",
       "title": "Naginata System Key O",
-      "shortName": "NG_O"
+      "shortName": "NG\nO"
     },
     {
       "name": "NG_P",
       "title": "Naginata System Key P",
-      "shortName": "NG_P"
+      "shortName": "NG\nP"
     },
     {
       "name": "NG_A",
       "title": "Naginata System Key A",
-      "shortName": "NG_A"
+      "shortName": "NG\nA"
     },
     {
       "name": "NG_S",
       "title": "Naginata System Key S",
-      "shortName": "NG_S"
+      "shortName": "NG\nS"
     },
     {
       "name": "NG_D",
       "title": "Naginata System Key D",
-      "shortName": "NG_D"
+      "shortName": "NG\nD"
     },
     {
       "name": "NG_F",
       "title": "Naginata System Key F",
-      "shortName": "NG_F"
+      "shortName": "NG\nF"
     },
     {
       "name": "NG_G",
       "title": "Naginata System Key G",
-      "shortName": "NG_G"
+      "shortName": "NG\nG"
     },
     {
       "name": "NG_H",
       "title": "Naginata System Key H",
-      "shortName": "NG_H"
+      "shortName": "NG\nH"
     },
     {
       "name": "NG_J",
       "title": "Naginata System Key J",
-      "shortName": "NG_J"
+      "shortName": "NG\nJ"
     },
     {
       "name": "NG_K",
       "title": "Naginata System Key K",
-      "shortName": "NG_K"
+      "shortName": "NG\nK"
     },
     {
       "name": "NG_L",
       "title": "Naginata System Key L",
-      "shortName": "NG_L"
+      "shortName": "NG\nL"
     },
     {
       "name": "NG_SCLN",
       "title": "Naginata System Key SCLN",
-      "shortName": "NG_SCLN"
+      "shortName": "NG\nSCLN"
     },
     {
       "name": "NG_Z",
       "title": "Naginata System Key Z",
-      "shortName": "NG_Z"
+      "shortName": "NG\nZ"
     },
     {
       "name": "NG_X",
       "title": "Naginata System Key X",
-      "shortName": "NG_X"
+      "shortName": "NG\nX"
     },
     {
       "name": "NG_C",
       "title": "Naginata System Key C",
-      "shortName": "NG_C"
+      "shortName": "NG\nC"
     },
     {
       "name": "NG_V",
       "title": "Naginata System Key V",
-      "shortName": "NG_V"
+      "shortName": "NG\nV"
     },
     {
       "name": "NG_B",
       "title": "Naginata System Key B",
-      "shortName": "NG_B"
+      "shortName": "NG\nB"
     },
     {
       "name": "NG_N",
       "title": "Naginata System Key N",
-      "shortName": "NG_N"
+      "shortName": "NG\nN"
     },
     {
       "name": "NG_M",
       "title": "Naginata System Key M",
-      "shortName": "NG_M"
+      "shortName": "NG\nM"
     },
     {
       "name": "NG_COMM",
       "title": "Naginata System Key COMM",
-      "shortName": "NG_COMM"
+      "shortName": "NG\nCOMM"
     },
     {
       "name": "NG_DOT",
       "title": "Naginata System Key DOT",
-      "shortName": "NG_DOT"
+      "shortName": "NG\nDOT"
     },
     {
       "name": "NG_SLSH",
       "title": "Naginata System Key SLSH",
-      "shortName": "NG_SLSH"
+      "shortName": "NG\nSLSH"
     },
     {
       "name": "NG_SHFT",
       "title": "Naginata System Key Space",
-      "shortName": "NG_SHFT"
+      "shortName": "NG\nSHFT"
     },
     {
       "name": "NG_SHFT2",
       "title": "Naginata System Key Enter",
-      "shortName": "NG_SHFT2"
-    },
-    {
-      "name": "NG_ON",
-      "title": "Naginata System On",
-      "shortName": "NG_ON"
-    },
-    {
-      "name": "NG_OFF",
-      "title": "Naginata System Off",
-      "shortName": "NG_OFF"
+      "shortName": "NG\nSHFT2"
     },
     {
       "name": "NGSW_WIN",
       "title": "Naginata System to Windows",
-      "shortName": "NGSW_WIN"
+      "shortName": "NGSW\nWIN"
     },
     {
       "name": "NGSW_MAC",
       "title": "Naginata System to Mac",
-      "shortName": "NGSW_MAC"
+      "shortName": "NGSW\nMAC"
     },
     {
       "name": "NGSW_LNX",
       "title": "Naginata System to Linux",
-      "shortName": "NGSW_LNX"
+      "shortName": "NGSW\nLNX"
     },
     {
       "name": "NGSW_IOS",
       "title": "Naginata System to iOS",
-      "shortName": "NGSW_IOS"
+      "shortName": "NGSW\nIOS"
     },
     {
       "name": "NG_SHOS",
       "title": "Naginata System Show OS",
-      "shortName": "NG_SHOS"
+      "shortName": "NG\nSHOS"
     },
     {
       "name": "NG_TAYO",
       "title": "Naginata System TATEGAKI Toggle",
-      "shortName": "NG_TAYO"
+      "shortName": "NG\nTAYO"
     },
     {
       "name": "NG_KOTI",
       "title": "Naginata System KOUCHI-Shift Toggle",
-      "shortName": "NG_KOTI"
-    },
-    {
-      "name": "US_KEY",
-      "title": "No use twpair_on_jis",
-      "shortName": "US\nKEY"
-    },
-    {
-      "name": "US2JIS",
-      "title": "Use twpair_on_jis",
-      "shortName": "US2\nJIS"
+      "shortName": "NG\nKOTI"
     }
   ],
   "layouts": {
