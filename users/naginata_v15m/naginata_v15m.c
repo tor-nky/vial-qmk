@@ -1168,10 +1168,8 @@ void ng_copy() {
       bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_C)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_C)SS_UP(X_LCTL));
       break;
     case NG_MAC_BMP:
-      bmp_send_string(SS_LCMD("c"));
-      break;
     case NG_IOS_BMP:
-      bmp_send_string(SS_LCMD("c")SS_DELAY(60));
+      bmp_send_string(SS_LCMD("c"));
       break;
 #endif
   }
@@ -1204,7 +1202,7 @@ void ng_paste() {
       bmp_send_string(SS_DOWN(X_LCMD)SS_DELAY(100)SS_DOWN(X_V)SS_DELAY(100)SS_UP(X_V)SS_UP(X_LCMD)SS_DELAY(100));
       break;
     case NG_IOS_BMP:
-      bmp_send_string(SS_LCMD("v")SS_DELAY(60));
+      bmp_send_string(SS_LCMD("v")SS_DELAY(80));
       break;
 #endif
   }
