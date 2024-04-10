@@ -32,7 +32,7 @@
 
 // 薙刀式
 #include "naginata.h"
-#define _NAGINATA 1 // 薙刀式入力レイヤー
+#define _NAGINATA 7 // 薙刀式入力レイヤー
 // 薙刀式
 
 
