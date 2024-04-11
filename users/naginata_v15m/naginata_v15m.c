@@ -1486,7 +1486,7 @@ void ng_saihenkan() {
       tap_code16(LWIN(KC_SLASH));
       break;
     case NG_LINUX:
-      tap_code(KC_INTERNATIONAL_4);
+      tap_code(KC_INTERNATIONAL_4); // 変換
       break;
     case NG_MAC:
       tap_code(KC_LANGUAGE_1);
@@ -1497,7 +1497,7 @@ void ng_saihenkan() {
       bmp_send_string(SS_LWIN("/"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_TAP(X_INTERNATIONAL_4));
+      bmp_send_string(SS_TAP(X_INTERNATIONAL_4)); // 変換
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
@@ -1590,11 +1590,16 @@ void ng_ime_complete() {
       bmp_send_string(SS_LSFT(SS_LCTL(SS_TAP(X_INTERNATIONAL_4)SS_TAP(X_INTERNATIONAL_4))));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_TAP(X_GRAVE)SS_TAP(X_INTERNATIONAL_2));  // 半角/全角 → ひらがな
+      // Shift+Ctrl+変換
+      bmp_send_string(SS_LSFT(SS_LCTL(SS_TAP(X_INTERNATIONAL_4))));
       break;
     case NG_MAC_BMP:
+      // (Mac)英数 → Shift+(Mac)かな → (Mac)かな
+      bmp_send_string(SS_TAP(X_LANGUAGE_2)SS_LSFT(SS_TAP(X_LANGUAGE_2))SS_TAP(X_LANGUAGE_1));
+      break;
     case NG_IOS_BMP:
-      bmp_send_string(SS_TAP(X_LANGUAGE_2)SS_TAP(X_LANGUAGE_1));  // (Mac)英数 → (Mac)かな
+      // (Mac)英数 → (Mac)かな
+      bmp_send_string(SS_TAP(X_LANGUAGE_2)SS_TAP(X_LANGUAGE_1));
       break;
 #endif
   }
