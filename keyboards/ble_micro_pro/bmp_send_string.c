@@ -23,27 +23,30 @@
 
 // キュー
 static char queue[QUEUE_SIZE_MAX];
-static char *queue_begin = queue,
-            *queue_end = queue;
-static unsigned queue_size = 0;
+static char *queue_read_p = queue,
+            *queue_write_p = queue;
+static size_t queue_size = 0;
 
 // キューに文字列を追加
 static void bmp_append_string(const char *string) {
-    int string_size = strlen(string);
+    size_t string_size = strlen(string);
     // もし十分な空きがないなら何もしない
-    if (!string_size || string_size > (QUEUE_SIZE_MAX) - queue_size) return;
+    if (string_size > (QUEUE_SIZE_MAX) - queue_size) return;
 
     queue_size += string_size;
-    unsigned after_size = queue + QUEUE_SIZE_MAX - queue_end;
-    // 折り返す必要あり
-    if (string_size > after_size) {
-        memcpy(queue_end, string, after_size);
-        string_size -= after_size;
-        memcpy(queue, string + after_size, string_size);
-        queue_end = queue + string_size;
-    } else {
-        memcpy(queue_end, string, string_size);
-        queue_end += string_size;
+    {
+        size_t after_size = queue + (QUEUE_SIZE_MAX) - queue_write_p;
+        // 折り返す必要あり
+        if (string_size >= after_size) {
+            memcpy(queue_write_p, string, after_size);  // 末尾の '\0' はコピーしない
+            queue_write_p = queue;
+            string += after_size;
+            string_size -= after_size;
+        }
+    }
+    if (string_size) {
+        memcpy(queue_write_p, string, string_size); // 末尾の '\0' はコピーしない
+        queue_write_p += string_size;
     }
 }
 
@@ -52,11 +55,12 @@ static char front_pop(void) {
     // キューが空なら退出
     if (!queue_size) return '\0';
 
-    char keycode = *queue_begin;
-    queue_begin++;
+    char keycode = *queue_read_p;
+    queue_read_p++;
     queue_size--;
-    if (queue_begin == queue + QUEUE_SIZE_MAX) {
-        queue_begin = queue;
+    // 末端処理
+    if (queue_read_p == queue + (QUEUE_SIZE_MAX)) {
+        queue_read_p = queue;
     }
     return keycode;
 }
