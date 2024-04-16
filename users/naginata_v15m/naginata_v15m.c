@@ -19,7 +19,7 @@
 #include "naginata_parts.h"
 #include "unicode_P.h"
 #if defined(NG_BMP)
-#   include "keyboards/ble_micro_pro/bmp_send_string.h"
+#   include "keyboards/ble_micro_pro/keymaps/naginata_v15m/bmp_send_string.h"
 #endif
 
 #include <string.h>
