@@ -18,7 +18,7 @@
 #include <ctype.h>
 #include <string.h>
 
-#define QUEUE_SIZE_MAX  1024
+#define QUEUE_SIZE_MAX  128
 #define INTERVAL_TICK   8
 
 // キュー
