@@ -17,4 +17,4 @@ $(BUILD_DIR)/obj_sekigon_keyboard_quantizer_mini_naginata_v15m/quantum/via.o:: C
 SRC += tmk_core/protocol/bmp/via_qmk.c
 
 
-# OS_DETECTION_ENABLE = yes
+OS_DETECTION_ENABLE = yes
