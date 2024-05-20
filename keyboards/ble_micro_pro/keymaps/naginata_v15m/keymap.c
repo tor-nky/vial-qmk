@@ -7,13 +7,6 @@
 #define _NAGINATA 1 // 薙刀式入力レイヤー
 // 薙刀式
 
-
-// Defines the keycodes used by our macros in process_record_user
-enum custom_keycodes {
-    US_KEY = NG_SAFE_RANGE,
-    US2JIS,
-};
-
 const uint16_t PROGMEM keymaps[1][MATRIX_ROWS][MATRIX_COLS] = {{{
     KC_A, KC_B, KC_C, KC_D, KC_E, KC_F, KC_G, KC_H, KC_I, KC_J, KC_K, KC_L, KC_M, KC_N, KC_O, KC_P, KC_R, KC_S, KC_T
 }}};
