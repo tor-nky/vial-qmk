@@ -126,6 +126,6 @@ void bmp_send_string(const char *string) {
 }
 
 // 全ての QMK 処理の最後に、次の繰り返しを開始する前に呼び出される関数
-void housekeeping_task_kb(void) {
+void housekeeping_task_user(void) {
     bmp_send_loop();
 }
