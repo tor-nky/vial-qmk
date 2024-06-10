@@ -152,7 +152,7 @@ typedef enum naginata_keycodes {
 typedef union {
   uint32_t raw;
   struct {
-    uint8_t key_os_override;
+    uint8_t key_os_override : 2;
     uint8_t os;
     bool live_conv :1;
     bool tategaki :1;
