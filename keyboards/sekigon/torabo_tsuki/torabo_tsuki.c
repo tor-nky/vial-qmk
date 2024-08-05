@@ -37,6 +37,8 @@
 
 eeconfig_kb_t eeconfig_kb;
 
+static bool trackball_initialized;
+
 bmp_api_ble_conn_param_t get_periph_conn_param(uint8_t mode) {
     const bmp_api_ble_conn_param_t param[MODE_COUNT] = {
         {.max_interval = BLE_INTERVAL_MASTER_0, .min_interval = BLE_INTERVAL_MASTER_0, .slave_latency = MAX_INTERVAL_MASTER / BLE_INTERVAL_MASTER_0}, //
@@ -87,6 +89,12 @@ void keyboard_post_init_kb(void) {
     new_config.param_central    = get_central_conn_param(eeconfig_kb.battery.mode);
     new_config.param_peripheral = get_periph_conn_param(eeconfig_kb.battery.mode);
     BMPAPI->app.set_config(&new_config);
+
+    static char status[8];
+    if (is_keyboard_master()) {
+        snprintf(status, sizeof(status), "%s", trackball_initialized ? "OK" : "NG");
+        BMPAPI->usb.create_file("STATUS  TXT", (uint8_t *)status, strlen(status));
+    }
 }
 
 void matrix_init_kb() {
@@ -199,7 +207,7 @@ void raw_hid_receive_kb(uint8_t *data, uint8_t length) {
 }
 
 void pointing_device_driver_init(void) {
-    trackball_init(CS_PIN_TB0);
+    trackball_initialized = (trackball_init(CS_PIN_TB0) == 0);
 }
 
 static uint32_t       rate_limit_start = 0;
@@ -212,8 +220,35 @@ bool is_pointing_device_active(void) {
 }
 
 report_mouse_t pointing_device_driver_get_report(report_mouse_t mouse_report) {
-    report_mouse_t report  = mouse_report;
-    pointing_device_active = true;
+    report_mouse_t report     = mouse_report;
+    bool           force_send = false;
+    pointing_device_active    = true;
+
+    uint8_t motion_pin_state = readPin(TB_MOTION);
+
+    if (motion_pin_state == 0 && is_keyboard_master()) {
+        trackball_data_t data = trackball_get();
+        if (data.stat & 0x80) {
+            if (bmp_config->matrix.is_left_hand) {
+                report.x = data.x;
+                report.y = -data.y;
+            } else {
+                report.x = -data.x;
+                report.y = data.y;
+            }
+        }
+
+        if (debug_mouse) {
+            printf("%8lu %02x %6d %6d\n", timer_read32(), data.stat, data.x, data.y);
+        }
+
+        force_send                  = (mouse_report_buffer.buttons != mouse_report.buttons);
+        mouse_report_buffer.buttons = report.buttons;
+        mouse_report_buffer.x += report.x;
+        mouse_report_buffer.y += report.y;
+        mouse_report_buffer.h += report.h;
+        mouse_report_buffer.v += report.v;
+    }
 
     if (!mouse_buffer_empty && timer_elapsed32(rate_limit_start) >= get_interval_tb(eeconfig_kb.battery.mode)) {
         report                      = mouse_report_buffer;
@@ -224,43 +259,24 @@ report_mouse_t pointing_device_driver_get_report(report_mouse_t mouse_report) {
         mouse_buffer_empty          = true;
         bmp_set_enable_task_interval_stretch(false);
         return report;
-    } else if (readPin(TB_MOTION) == 1 || !is_keyboard_master()) {
+    } else if (motion_pin_state == 1 || !is_keyboard_master()) {
         pointing_device_active = false;
         return mouse_report;
-    }
-
-    trackball_data_t data = trackball_get();
-
-    if (data.stat & 0x80) {
-        if (bmp_config->matrix.is_left_hand) {
-            report.x = data.x;
-            report.y = -data.y;
-        } else {
-            report.x = -data.x;
-            report.y = data.y;
-        }
-    }
-
-    bool force_send             = (mouse_report_buffer.buttons != mouse_report.buttons);
-    mouse_report_buffer.buttons = report.buttons;
-    mouse_report_buffer.x += report.x;
-    mouse_report_buffer.y += report.y;
-    mouse_report_buffer.h += report.h;
-    mouse_report_buffer.v += report.v;
-
-    // Limit send rate to prevent BLE buffer overflow
-    if (force_send || !get_ble_enabled() || timer_elapsed32(rate_limit_start) >= get_interval_tb(eeconfig_kb.battery.mode)) {
-        report                      = mouse_report_buffer;
-        rate_limit_start            = timer_read32();
-        mouse_report_buffer         = (report_mouse_t){0};
-        mouse_report_buffer.buttons = report.buttons;
-        mouse_buffer_empty          = true;
     } else {
-        mouse_report_buffer = mouse_report;
-        mouse_buffer_empty  = false;
-    }
+        // Limit send rate to prevent BLE buffer overflow
+        if (force_send || !get_ble_enabled() || timer_elapsed32(rate_limit_start) >= get_interval_tb(eeconfig_kb.battery.mode)) {
+            report                      = mouse_report_buffer;
+            rate_limit_start            = timer_read32();
+            mouse_report_buffer         = (report_mouse_t){0};
+            mouse_report_buffer.buttons = report.buttons;
+            mouse_buffer_empty          = true;
+        } else {
+            mouse_report_buffer = mouse_report;
+            mouse_buffer_empty  = false;
+        }
 
-    bmp_set_enable_task_interval_stretch(false);
+        bmp_set_enable_task_interval_stretch(false);
+    }
 
     return report;
 }
