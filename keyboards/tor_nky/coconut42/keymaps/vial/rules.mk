@@ -2,6 +2,12 @@ VIA_ENABLE = yes
 VIAL_ENABLE = yes
 VIAL_INSECURE = yes
 
+# RGBLIGHT_ENABLE = no	# Enable WS2812 RGB underlight.
+# RGB_MATRIX_ENABLE = yes
+# VIALRGB_ENABLE = yes
+
+OLED_ENABLE = yes
+OLED_DRIVER	= ssd1306
 
 # QMK_SETTINGS = yes
 
@@ -10,5 +16,3 @@ VIAL_INSECURE = yes
 # KEY_OVERRIDE_ENABLE = yes
 # MAGIC_ENABLE = yes
 # GRAVE_ESC_ENABLE = yes
-
-# OLED_ENABLE = yes
