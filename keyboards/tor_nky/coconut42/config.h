@@ -32,6 +32,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #if defined(MCU_RP) /* Raspberry Pi MCUs */
 #   define I2C_DRIVER I2CD1
-#   define I2C1_SDA_PIN GP2
-#   define I2C1_SCL_PIN GP3
+#   define I2C1_SDA_PIN GP6
+#   define I2C1_SCL_PIN GP7
 #endif
