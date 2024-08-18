@@ -36,7 +36,7 @@ static void bmp_append_string(const char *string) {
     queue_size += string_size;
     {
         size_t after_size = queue + (QUEUE_SIZE_MAX) - queue_write_p;
-        // 折り返す必要あり
+        // キューを折り返す必要あり
         if (string_size >= after_size) {
             memcpy(queue_write_p, string, after_size);  // 末尾の '\0' はコピーしない
             queue_write_p = queue;
@@ -58,7 +58,7 @@ static char front_pop(void) {
     char keycode = *queue_read_p;
     queue_read_p++;
     queue_size--;
-    // 末端処理
+    // キューの折り返し
     if (queue_read_p == queue + (QUEUE_SIZE_MAX)) {
         queue_read_p = queue;
     }
@@ -70,7 +70,7 @@ static char front_pop(void) {
 static void bmp_send_loop(void) {
     static uint32_t last_read_time = 0;
     static uint32_t interval = 0;
-    // 時間が来なければ退出
+    // 時間前ならそのまま戻る
     if (timer_elapsed32(last_read_time) < interval) return;
 
     last_read_time = timer_read32();

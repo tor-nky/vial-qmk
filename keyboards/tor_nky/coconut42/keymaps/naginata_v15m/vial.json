@@ -2,9 +2,7 @@
   "name": "coconut42 Keyboard",
   "vendorId": "0xFEED",
   "productId": "0x9F3B",
-  "lighting": {
-    "extends": "qmk_rgblight"
-  },
+  "lighting": "vialrgb",
   "matrix": {
     "rows": 8,
     "cols": 7

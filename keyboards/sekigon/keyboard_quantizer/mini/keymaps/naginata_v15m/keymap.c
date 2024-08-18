@@ -27,7 +27,7 @@
 #include "os_key_override.h"
 
 #ifdef OS_DETECTION_ENABLE
-#include "os_detection.h"
+#   include "os_detection.h"
 #endif
 
 // 薙刀式
