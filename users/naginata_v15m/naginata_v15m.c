@@ -469,7 +469,7 @@ void naginata_off(void) {
     case NG_WIN:
     case NG_LINUX:
       // 確定→ひらがな→半角/全角
-      tap_code16_delay(LSFT(LCTL(KC_INTERNATIONAL_4)), 8); // Shift+Ctrl+変換
+      tap_code16_delay(LSFT(LCTL(KC_INTERNATIONAL_4)), 8);  // Shift+Ctrl+変換
       tap_code(KC_INTERNATIONAL_2); // ひらがな
       tap_code(KC_GRAVE); // 半角/全角
       break;
@@ -480,7 +480,7 @@ void naginata_off(void) {
     case NG_WIN_BMP:
     case NG_LINUX_BMP:
       // 確定→ひらがな→半角/全角
-      tap_code16_delay(LSFT(LCTL(KC_INTERNATIONAL_4)), 8); // Shift+Ctrl+変換
+      tap_code16_delay(LSFT(LCTL(KC_INTERNATIONAL_4)), 8);  // Shift+Ctrl+変換
       tap_code(KC_INTERNATIONAL_2); // ひらがな
       tap_code(KC_GRAVE); // 半角/全角
       break;
@@ -809,7 +809,7 @@ bool process_naginata(uint16_t keycode, keyrecord_t *record) {
       && (keycode == KC_LEFT_SHIFT || keycode == KC_RIGHT_SHIFT)) {
     naginata_type(KC_NO, record); // 未出力キーを処理
   }
-
+  // Shift+英字 で IMEオフ
   if (process_shifted_alphabet(keycode, record))
     return true;
 
