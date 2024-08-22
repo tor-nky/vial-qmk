@@ -463,6 +463,7 @@ void naginata_off(void) {
   center_shift_count = 0;
   naginata_clear();
   layer_off(naginata_layer);
+  wait_ms(8); // キーを出力してから確定やIME操作までに、間を空ける
 
   switch (naginata_config.os) {
 #if !defined(NG_BMP)
@@ -474,7 +475,7 @@ void naginata_off(void) {
       tap_code(KC_GRAVE); // 半角/全角
       break;
     case NG_MAC:
-      tap_code_delay(KC_LANGUAGE_2, 8); // (Mac)英数
+      tap_code(KC_LANGUAGE_2);  // (Mac)英数
       break;
 #else
     case NG_WIN_BMP:
@@ -486,7 +487,7 @@ void naginata_off(void) {
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
-      tap_code_delay(KC_LANGUAGE_2, 8); // (Mac)英数
+      tap_code(KC_LANGUAGE_2);  // (Mac)英数
       break;
 #endif
   }
@@ -664,6 +665,7 @@ static bool process_shifted_alphabet(uint16_t keycode, keyrecord_t *record) {
       && ~(mods & ~(MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_RIGHT_SHIFT)))
       && record->event.pressed && keycode >= KC_A && keycode <= KC_Z) {
     clear_mods();
+    naginata_type(KC_NO, record); // 未出力キーを処理
     naginata_off();
     set_mods(mods);
     return true;
@@ -804,12 +806,6 @@ bool process_naginata(uint16_t keycode, keyrecord_t *record) {
   if (!is_naginata)
     return enable_naginata(keycode, record);
 
-  // シフトを押したとき
-  if (record->event.pressed
-      && (keycode == KC_LEFT_SHIFT || keycode == KC_RIGHT_SHIFT)) {
-    naginata_type(KC_NO, record); // 未出力キーを処理
-  }
-  // Shift+英字 で IMEオフ
   if (process_shifted_alphabet(keycode, record))
     return true;
 
