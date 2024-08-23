@@ -2,7 +2,7 @@
   "name": "GPK60-46SGR",
   "vendorId": "0xFEED",
   "productId": "0x1423",
-  "lighting": "none",
+  "lighting": "qmk_rgblight",
   "matrix": {
     "rows": 8,
     "cols": 6
