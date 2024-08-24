@@ -28,8 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define WEAR_LEVELING_BACKING_SIZE (8192 * 2)
 #define WEAR_LEVELING_LOGICAL_SIZE 8192
 
-// #define VIALRGB_NO_DIRECT
-
+#define VIAL_DEFAULT_PERMISSIVE_HOLD
+// #define VIAL_DEFAULT_IGNORE_MOD_TAP_INTERRUPT
+// #define VIAL_DEFAULT_RETRO_TAPPING
 
 //#define USE_MATRIX_I2C
 
@@ -38,10 +39,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
-
-//#define QUICK_TAP_TERM 0
-// #define TAPPING_TERM 200
-// #define PERMISSIVE_HOLD
 
 // fix iPhone and iPad power adapter issue
 // iOS device need lessthan 100

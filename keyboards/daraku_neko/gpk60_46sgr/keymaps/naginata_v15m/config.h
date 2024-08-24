@@ -20,9 +20,12 @@
 #define WEAR_LEVELING_BACKING_SIZE (8192 * 2)
 #define WEAR_LEVELING_LOGICAL_SIZE 8192
 
+#define VIAL_DEFAULT_PERMISSIVE_HOLD
+// #define VIAL_DEFAULT_IGNORE_MOD_TAP_INTERRUPT
+// #define VIAL_DEFAULT_RETRO_TAPPING
+
 
 #define QK_NG (QK_KB_0 + 3) // 薙刀式シフトキーのキーコード開始位置
-
 
 #define NG_USE_KAWASEMI // Mac汎用 → かわせみ専用
 #define UNICODE_KEY_MAC KC_NO   // Keycodes used for starting Unicode input on different platforms
