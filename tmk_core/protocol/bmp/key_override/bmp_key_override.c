@@ -38,6 +38,6 @@ int register_bmp_key_override(const key_override_t *override) {
 }
 
 void remove_all_bmp_key_overrides(void) {
-    override_ptrs[VIAL_KEY_OVERRIDE_ENTRIES + 1] = NULL;
+    override_ptrs[VIAL_KEY_OVERRIDE_ENTRIES] = NULL;
     bmp_override_cnt        = 0;
 }

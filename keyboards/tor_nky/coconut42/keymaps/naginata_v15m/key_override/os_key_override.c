@@ -36,6 +36,6 @@ int register_os_key_override(const key_override_t *override) {
 }
 
 void remove_all_os_key_overrides(void) {
-    override_ptrs[VIAL_KEY_OVERRIDE_ENTRIES + 1] = NULL;
-    os_override_cnt                              = 0;
+    override_ptrs[VIAL_KEY_OVERRIDE_ENTRIES] = NULL;
+    os_override_cnt                          = 0;
 }
