@@ -1,8 +1,6 @@
 /*
-This is the c configuration file for the keymap
-
-Copyright 2012 Jun Wako <wakojun@gmail.com>
-Copyright 2015 Jack Humbert
+Copyright 2019 @foostan
+Copyright 2020 Drashna Jaelre <@drashna>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,14 +18,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define VIAL_KEYBOARD_UID {0x91, 0xEB, 0x79, 0x80, 0x88, 0x1E, 0x09, 0x55}
-#define VIAL_UNLOCK_COMBO_ROWS {3, 2}
-#define VIAL_UNLOCK_COMBO_COLS {1, 3}
+#define VIAL_KEYBOARD_UID {0x3B, 0x6B, 0xA0, 0x29, 0x80, 0x56, 0xED, 0xD1}
+#define VIAL_UNLOCK_COMBO_ROWS {0, 0}
+#define VIAL_UNLOCK_COMBO_COLS {0, 1}
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 8
 #define WEAR_LEVELING_BACKING_SIZE (8192 * 2)
 #define WEAR_LEVELING_LOGICAL_SIZE 8192
 
+// #define TAPPING_TERM 180
 #define VIAL_DEFAULT_PERMISSIVE_HOLD
 // #define VIAL_DEFAULT_IGNORE_MOD_TAP_INTERRUPT
 // #define VIAL_DEFAULT_RETRO_TAPPING

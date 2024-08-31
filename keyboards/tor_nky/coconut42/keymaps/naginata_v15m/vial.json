@@ -237,9 +237,9 @@
   "layouts": {
     "labels": [
       [
-          "Layout",
-          "LAYOUT_split_3x6_3",
-          "LAYOUT_split_3x5_3"
+        "Layout",
+        "LAYOUT_split_3x6_3",
+        "LAYOUT_split_3x5_3"
       ]
     ],
     "keymap": [
