@@ -16,24 +16,22 @@ void bmp_key_override_init(void) {
     for (size_t i = 0; i < VIAL_KEY_OVERRIDE_ENTRIES; ++i) {
         override_ptrs[i] = key_overrides[i];
     }
-    
+
     // regisiter bmp override
     for (size_t i = 0; i < BMP_KEY_OVERRIDE_ENTRIES; ++i) {
         override_ptrs[i + VIAL_KEY_OVERRIDE_ENTRIES] = &bmp_override[i];
     }
-    
+
     // swap reference
     key_overrides = override_ptrs;
 }
-
 
 int register_bmp_key_override(const key_override_t *override) {
     if (bmp_override_cnt >= BMP_KEY_OVERRIDE_ENTRIES) {
         return -1;
     }
 
-    override_ptrs[VIAL_KEY_OVERRIDE_ENTRIES + bmp_override_cnt++]   = override;
-    override_ptrs[VIAL_KEY_OVERRIDE_ENTRIES + bmp_override_cnt + 1] = override;
+    override_ptrs[VIAL_KEY_OVERRIDE_ENTRIES + bmp_override_cnt++] = override;
     return 0;
 }
 
