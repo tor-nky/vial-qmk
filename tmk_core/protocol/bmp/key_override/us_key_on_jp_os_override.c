@@ -25,7 +25,7 @@ static const key_override_t *us_key_on_jp_os_overrides[] = {
     w_shift(KC_LBRC, JP_LCBR),
     wo_shift(KC_RBRC, JP_RBRC),
     w_shift(KC_RBRC, JP_RCBR),
-    wo_shift(KC_BSLS, JP_BSLS),
+    wo_shift(KC_BSLS, JP_YEN),
     w_shift(KC_BSLS, JP_PIPE),
     w_shift(KC_SCLN, JP_COLN),
     wo_shift(KC_QUOT, JP_QUOT),
