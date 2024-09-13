@@ -1,0 +1,372 @@
+{
+  "name": "coconut42 Keyboard",
+  "vendorId": "0xFEED",
+  "productId": "0x9F3B",
+  "lighting": "vialrgb",
+  "matrix": {
+    "rows": 8,
+    "cols": 7
+  },
+  "customKeycodes": [
+    {
+      "name": "DISABLE_KEY_OS_OVERRIDE",
+      "title": "Disable key overrides for JP/US OS",
+      "shortName": "D\nOVR"
+    },
+    {
+      "name": "ENABLE_US_KEY_ON_JP_OS_OVERRIDE",
+      "title": "Enable US keyboard on JP OS override",
+      "shortName": "UJ\nOVR"
+    },
+    {
+      "name": "ENABLE_JP_KEY_ON_US_OS_OVERRIDE",
+      "title": "Enable JP keyboard on US OS override",
+      "shortName": "JU\nOVR"
+    },
+    {
+      "name": "NG_Q",
+      "title": "Naginata System Key Q",
+      "shortName": "NG\nQ"
+    },
+    {
+      "name": "NG_W",
+      "title": "Naginata System Key W",
+      "shortName": "NG\nW"
+    },
+    {
+      "name": "NG_E",
+      "title": "Naginata System Key E",
+      "shortName": "NG\nE"
+    },
+    {
+      "name": "NG_R",
+      "title": "Naginata System Key R",
+      "shortName": "NG\nR"
+    },
+    {
+      "name": "NG_T",
+      "title": "Naginata System Key T",
+      "shortName": "NG\nT"
+    },
+    {
+      "name": "NG_Y",
+      "title": "Naginata System Key Y",
+      "shortName": "NG\nY"
+    },
+    {
+      "name": "NG_U",
+      "title": "Naginata System Key U",
+      "shortName": "NG\nU"
+    },
+    {
+      "name": "NG_I",
+      "title": "Naginata System Key I",
+      "shortName": "NG\nI"
+    },
+    {
+      "name": "NG_O",
+      "title": "Naginata System Key O",
+      "shortName": "NG\nO"
+    },
+    {
+      "name": "NG_P",
+      "title": "Naginata System Key P",
+      "shortName": "NG\nP"
+    },
+    {
+      "name": "NG_A",
+      "title": "Naginata System Key A",
+      "shortName": "NG\nA"
+    },
+    {
+      "name": "NG_S",
+      "title": "Naginata System Key S",
+      "shortName": "NG\nS"
+    },
+    {
+      "name": "NG_D",
+      "title": "Naginata System Key D",
+      "shortName": "NG\nD"
+    },
+    {
+      "name": "NG_F",
+      "title": "Naginata System Key F",
+      "shortName": "NG\nF"
+    },
+    {
+      "name": "NG_G",
+      "title": "Naginata System Key G",
+      "shortName": "NG\nG"
+    },
+    {
+      "name": "NG_H",
+      "title": "Naginata System Key H",
+      "shortName": "NG\nH"
+    },
+    {
+      "name": "NG_J",
+      "title": "Naginata System Key J",
+      "shortName": "NG\nJ"
+    },
+    {
+      "name": "NG_K",
+      "title": "Naginata System Key K",
+      "shortName": "NG\nK"
+    },
+    {
+      "name": "NG_L",
+      "title": "Naginata System Key L",
+      "shortName": "NG\nL"
+    },
+    {
+      "name": "NG_SCLN",
+      "title": "Naginata System Key SCLN",
+      "shortName": "NG\nSCLN"
+    },
+    {
+      "name": "NG_Z",
+      "title": "Naginata System Key Z",
+      "shortName": "NG\nZ"
+    },
+    {
+      "name": "NG_X",
+      "title": "Naginata System Key X",
+      "shortName": "NG\nX"
+    },
+    {
+      "name": "NG_C",
+      "title": "Naginata System Key C",
+      "shortName": "NG\nC"
+    },
+    {
+      "name": "NG_V",
+      "title": "Naginata System Key V",
+      "shortName": "NG\nV"
+    },
+    {
+      "name": "NG_B",
+      "title": "Naginata System Key B",
+      "shortName": "NG\nB"
+    },
+    {
+      "name": "NG_N",
+      "title": "Naginata System Key N",
+      "shortName": "NG\nN"
+    },
+    {
+      "name": "NG_M",
+      "title": "Naginata System Key M",
+      "shortName": "NG\nM"
+    },
+    {
+      "name": "NG_COMM",
+      "title": "Naginata System Key COMM",
+      "shortName": "NG\nCOMM"
+    },
+    {
+      "name": "NG_DOT",
+      "title": "Naginata System Key DOT",
+      "shortName": "NG\nDOT"
+    },
+    {
+      "name": "NG_SLSH",
+      "title": "Naginata System Key SLSH",
+      "shortName": "NG\nSLSH"
+    },
+    {
+      "name": "NG_SHFT",
+      "title": "Naginata System Key Space",
+      "shortName": "NG\nSHFT"
+    },
+    {
+      "name": "NG_SHFT2",
+      "title": "Naginata System Key Enter",
+      "shortName": "NG\nSHFT2"
+    },
+    {
+      "name": "NG_ON",
+      "title": "Naginata System On",
+      "shortName": "NG\nON"
+    },
+    {
+      "name": "NG_OFF",
+      "title": "Naginata System Off",
+      "shortName": "NG\nOFF"
+    },
+    {
+      "name": "NG_CLR",
+      "title": "Naginata System Clear",
+      "shortName": "NG\nCLR"
+    },
+    {
+      "name": "NGSW_WIN",
+      "title": "Naginata System to Windows",
+      "shortName": "NGSW\nWIN"
+    },
+    {
+      "name": "NGSW_MAC",
+      "title": "Naginata System to Mac",
+      "shortName": "NGSW\nMAC"
+    },
+    {
+      "name": "NGSW_LNX",
+      "title": "Naginata System to Linux",
+      "shortName": "NGSW\nLNX"
+    },
+    {
+      "name": "NG_MLV",
+      "title": "Naginata System Mac Live Conversion Toggle",
+      "shortName": "NG\nMLV"
+    },
+    {
+      "name": "NG_SHOS",
+      "title": "Naginata System Show OS",
+      "shortName": "NG\nSHOS"
+    },
+    {
+      "name": "NG_TAYO",
+      "title": "Naginata System TATEGAKI Toggle",
+      "shortName": "NG\nTAYO"
+    },
+    {
+      "name": "NG_KOTI",
+      "title": "Naginata System KOUCHI-Shift Toggle",
+      "shortName": "NG\nKOTI"
+    }
+  ],
+  "layouts": {
+    "labels": [
+      [
+        "Layout",
+        "LAYOUT_split_3x6_3",
+        "LAYOUT_split_3x5_3"
+      ]
+    ],
+    "keymap": [
+      [
+        "3,0\n\n\n0,0",
+        "3,1\n\n\n0,0",
+        "3,2\n\n\n0,0",
+        "3,4\n\n\n0,0",
+        "3,5\n\n\n0,0",
+        "3,6\n\n\n0,0",
+        {
+          "x": 1
+        },
+        "7,6\n\n\n0,0",
+        "7,5\n\n\n0,0",
+        "7,4\n\n\n0,0",
+        "7,2\n\n\n0,0",
+        "7,1\n\n\n0,0",
+        "7,0\n\n\n0,0"
+      ],
+      [
+        "2,0\n\n\n0,0",
+        "2,1\n\n\n0,0",
+        "2,3\n\n\n0,0",
+        "2,4\n\n\n0,0",
+        "2,5\n\n\n0,0",
+        "2,6\n\n\n0,0",
+        {
+          "x": 1
+        },
+        "6,6\n\n\n0,0",
+        "6,5\n\n\n0,0",
+        "6,4\n\n\n0,0",
+        "6,3\n\n\n0,0",
+        "6,1\n\n\n0,0",
+        "6,0\n\n\n0,0"
+      ],
+      [
+        "1,0\n\n\n0,0",
+        "1,2\n\n\n0,0",
+        "1,3\n\n\n0,0",
+        "1,4\n\n\n0,0",
+        "1,5\n\n\n0,0",
+        "1,6\n\n\n0,0",
+        {
+          "x": 1
+        },
+        "5,6\n\n\n0,0",
+        "5,5\n\n\n0,0",
+        "5,4\n\n\n0,0",
+        "5,3\n\n\n0,0",
+        "5,2\n\n\n0,0",
+        "5,0\n\n\n0,0"
+      ],
+      [
+        {
+          "x": 3
+        },
+        "0,4\n\n\n0,0",
+        "0,5\n\n\n0,0",
+        "0,6\n\n\n0,0",
+        {
+          "x": 1
+        },
+        "4,6\n\n\n0,0",
+        "4,5\n\n\n0,0",
+        "4,4\n\n\n0,0"
+      ],
+      [
+        "3,1\n\n\n0,1",
+        "3,2\n\n\n0,1",
+        "3,4\n\n\n0,1",
+        "3,5\n\n\n0,1",
+        "3,6\n\n\n0,1",
+        {
+          "x": 1
+        },
+        "7,6\n\n\n0,1",
+        "7,5\n\n\n0,1",
+        "7,4\n\n\n0,1",
+        "7,2\n\n\n0,1",
+        "7,1\n\n\n0,1"
+      ],
+      [
+        "2,1\n\n\n0,1",
+        "2,3\n\n\n0,1",
+        "2,4\n\n\n0,1",
+        "2,5\n\n\n0,1",
+        "2,6\n\n\n0,1",
+        {
+          "x": 1
+        },
+        "6,6\n\n\n0,1",
+        "6,5\n\n\n0,1",
+        "6,4\n\n\n0,1",
+        "6,3\n\n\n0,1",
+        "6,1\n\n\n0,1"
+      ],
+      [
+        "1,2\n\n\n0,1",
+        "1,3\n\n\n0,1",
+        "1,4\n\n\n0,1",
+        "1,5\n\n\n0,1",
+        "1,6\n\n\n0,1",
+        {
+          "x": 1
+        },
+        "5,6\n\n\n0,1",
+        "5,5\n\n\n0,1",
+        "5,4\n\n\n0,1",
+        "5,3\n\n\n0,1",
+        "5,2\n\n\n0,1"
+      ],
+      [
+        {
+          "x": 2
+        },
+        "0,4\n\n\n0,1",
+        "0,5\n\n\n0,1",
+        "0,6\n\n\n0,1",
+        {
+          "x": 1
+        },
+        "4,6\n\n\n0,1",
+        "4,5\n\n\n0,1",
+        "4,4\n\n\n0,1"
+      ]
+    ]
+  }
+}
