@@ -1140,7 +1140,9 @@ void ng_cut() {
       bmp_send_string(SS_LCTL("x"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_X)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_X)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"x"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
       bmp_send_string(SS_LCMD("x"));
@@ -1169,7 +1171,9 @@ void ng_copy() {
       bmp_send_string(SS_LCTL("c"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_C)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_C)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"c"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
@@ -1200,7 +1204,9 @@ void ng_paste() {
       bmp_send_string(SS_LCTL("v"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_V)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_V)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"v"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
       bmp_send_string(SS_DOWN(X_LCMD)SS_DELAY(100)SS_DOWN(X_V)SS_DELAY(100)SS_UP(X_V)SS_UP(X_LCMD)SS_DELAY(100));
@@ -1349,6 +1355,8 @@ void ng_home() {
       break;
     case NG_LINUX_BMP:
       bmp_send_string(SS_DOWN(X_HOME)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_HOME));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
@@ -1376,6 +1384,8 @@ void ng_end() {
       break;
     case NG_LINUX_BMP:
       bmp_send_string(SS_DOWN(X_END)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_END));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
@@ -1410,7 +1420,9 @@ void ng_save() {
       bmp_send_string(SS_LCTL("s"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_S)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_S)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"s"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
       bmp_send_string(SS_LCMD("s"));
@@ -1446,7 +1458,9 @@ void ng_redo() {
       bmp_send_string(SS_LCTL("y"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_Y)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_Y)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"y"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
@@ -1473,7 +1487,9 @@ void ng_undo() {
       bmp_send_string(SS_LCTL("z"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_Z)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_Z)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"z"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
