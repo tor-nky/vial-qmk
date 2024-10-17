@@ -132,7 +132,6 @@ typedef struct {
 // かな定義
 // 3キー同時 → 2キー同時 → センターシフト → 単打 の順を推奨(単打の後に置いた定義はシフト復活が起きない)
 // シフト復活判定は、3キー同時と2キー同時の順序で決まる
-// 同じ key の定義が複数ある時は、早期出力がうまくいかない
 const PROGMEM naginata_keymap ngmap[] = {
   // ********** 3キー同時 **********
   // 拗音、外来音
@@ -554,9 +553,6 @@ void ng_send_unicode_string_P(const char *str) {
 
   switch (naginata_config.os) {
     case NG_WIN:
-      send_unicode_string_P(str);
-      tap_code(KC_ENTER);
-      break;
     case NG_LINUX:
       tap_code16(LSFT(LCTL(KC_INTERNATIONAL_4))); // Shift+Ctrl+変換
       tap_code(KC_GRAVE);
@@ -579,7 +575,7 @@ void ng_send_unicode_string_P(const char *str) {
       tap_code(KC_NUM_LOCK);  // IME Cancel
 #else
       // かわせみ専用
-      tap_code16(LOPT(LSFT(KC_B)));
+      tap_code16(LCTL(KC_F20));
       send_unicode_string_P(str);
       tap_code(KC_LANGUAGE_1);  // (Mac)かな
 #endif
@@ -637,14 +633,14 @@ static bool enable_naginata(uint16_t keycode, keyrecord_t *record) {
       // ２キー目、１キー目、両方ともかなオンキー
       if ((keycode == ngon_keys[0] && fghj_buf == ngon_keys[1]) ||
           (keycode == ngon_keys[1] && fghj_buf == ngon_keys[0])) {
-        naginata_on();
         fghj_buf = KC_NO;
+        naginata_on();
         return false;
       // ２キー目、１キー目、両方ともかなオフキー
       } else if ((keycode == ngoff_keys[0] && fghj_buf == ngoff_keys[1]) ||
           (keycode == ngoff_keys[1] && fghj_buf == ngoff_keys[0])) {
-        naginata_off();
         fghj_buf = KC_NO;
+        naginata_off();
         return false;
       }
       // どちらでもなければ、1キー目を出力
@@ -670,7 +666,6 @@ static bool enable_naginata(uint16_t keycode, keyrecord_t *record) {
 // 薙刀式をオン
 void naginata_on(void) {
   is_naginata = true;
-  fghj_buf = KC_NO;
   n_modifier = 0;
   layer_on(naginata_layer);
 
@@ -753,6 +748,11 @@ bool process_naginata(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 #if !defined(NG_BMP)
       case NG_ON:
+        // 起動判定中のキーを出力
+        if (fghj_buf != KC_NO) {
+          tap_code(fghj_buf);
+          fghj_buf = KC_NO;
+        }
         naginata_on();
         return false;
       case NG_OFF:
@@ -1141,7 +1141,9 @@ void ng_cut() {
       bmp_send_string(SS_LCTL("x"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_X)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_X)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"x"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
       bmp_send_string(SS_LCMD("x"));
@@ -1170,7 +1172,9 @@ void ng_copy() {
       bmp_send_string(SS_LCTL("c"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_C)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_C)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"c"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
@@ -1184,24 +1188,20 @@ void ng_paste() {
   switch (naginata_config.os) {
 #if !defined(NG_BMP)
     case NG_WIN:
-      tap_code16(LCTL(KC_V));
-      break;
     case NG_LINUX:
       tap_code16_delay(LCTL(KC_V), LINUX_WAIT_MS);
       break;
     case NG_MAC:
-      register_code(KC_LCMD);
-      wait_ms(100);
-      tap_code_delay(KC_V, 100);
-      unregister_code(KC_LCMD);
-      wait_ms(100);
+      tap_code16_delay(LCMD(KC_V), 135);
       break;
 #else
     case NG_WIN_BMP:
       bmp_send_string(SS_LCTL("v"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_V)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_V)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"v"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
       bmp_send_string(SS_DOWN(X_LCMD)SS_DELAY(100)SS_DOWN(X_V)SS_DELAY(100)SS_UP(X_V)SS_UP(X_LCMD)SS_DELAY(100));
@@ -1350,6 +1350,8 @@ void ng_home() {
       break;
     case NG_LINUX_BMP:
       bmp_send_string(SS_DOWN(X_HOME)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_HOME));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
@@ -1377,6 +1379,8 @@ void ng_end() {
       break;
     case NG_LINUX_BMP:
       bmp_send_string(SS_DOWN(X_END)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_END));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
@@ -1411,7 +1415,9 @@ void ng_save() {
       bmp_send_string(SS_LCTL("s"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_S)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_S)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"s"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
       bmp_send_string(SS_LCMD("s"));
@@ -1447,7 +1453,9 @@ void ng_redo() {
       bmp_send_string(SS_LCTL("y"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_Y)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_Y)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"y"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
@@ -1474,7 +1482,9 @@ void ng_undo() {
       bmp_send_string(SS_LCTL("z"));
       break;
     case NG_LINUX_BMP:
-      bmp_send_string(SS_DOWN(X_LCTL)SS_DOWN(X_Z)SS_DELAY(LINUX_WAIT_MS)SS_UP(X_Z)SS_UP(X_LCTL));
+      bmp_send_string(SS_DOWN(X_LCTL)SS_DELAY(LINUX_WAIT_MS)"z"SS_UP(X_LCTL));
+        // 無線接続時、2秒以上キーを押していない状態で出力するとSS_DELAY()が働かないが、
+        // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
     case NG_IOS_BMP:
@@ -1585,7 +1595,7 @@ void ng_ime_complete() {
       tap_code16(LSFT(KC_LANGUAGE_1));  // Shift+(Mac)かな
       tap_code(KC_LANGUAGE_1);  // (Mac)かな
 # else
-      tap_code16(LOPT(LSFT(KC_B)));
+      tap_code16(LCTL(KC_F20));
       tap_code(KC_LANGUAGE_1);  // (Mac)かな
 # endif
       break;
