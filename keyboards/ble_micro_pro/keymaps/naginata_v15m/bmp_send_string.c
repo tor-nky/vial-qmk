@@ -18,6 +18,10 @@
 #include <ctype.h>
 #include <string.h>
 
+// 薙刀式
+#include "naginata.h"
+// 薙刀式
+
 #define QUEUE_SIZE_MAX  128
 #define INTERVAL_TICK   8
 
@@ -128,4 +132,8 @@ void bmp_send_string(const char *string) {
 // 全ての QMK 処理の最後に、次の繰り返しを開始する前に呼び出される関数
 void housekeeping_task_user(void) {
     bmp_send_loop();
+    // 薙刀式
+    // 後置シフト待ち処理
+    kouchi_shift_loop();
+    // 薙刀式
 }

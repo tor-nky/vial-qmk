@@ -260,6 +260,10 @@ void housekeeping_task_user(void) {
             break;
         }
     }
+    // 薙刀式
+    // 後置シフト待ち処理
+    kouchi_shift_loop();
+    // 薙刀式
 }
 
 void matrix_init_user(void) {
