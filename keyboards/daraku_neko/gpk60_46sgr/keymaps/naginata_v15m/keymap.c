@@ -14,20 +14,20 @@
 #   include "os_detection.h"
 #endif
 
-// 薙刀式
+// 薙刀式 begin 1
 #include "naginata.h"
 #ifdef OLED_ENABLE
   bool update_oled = true;
   bool ng_state = false;
 #endif
-// 薙刀式
+// 薙刀式 end 1
 
 // Defines names for use in layer keycodes and the keymap
 enum layer_names {
   _QWERTY,
-// 薙刀式
+// 薙刀式 begin 2
   _NAGINATA, // 薙刀式入力レイヤー
-// 薙刀式
+// 薙刀式 end 2
   _NUMPAD,
   _LOWER,
   _RAISE,
@@ -119,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`--------'                 `--------+--------+--------'      `--------------------------'                 `--------'
   ),
 
-// 薙刀式
+// 薙刀式 begin 3
   [_NAGINATA] = LAYOUT(
   //,-----------------------------------------------------.      ,--------------------------------------------------------------.
       _______,    NG_Q,    NG_W,    NG_E,    NG_R,    NG_T,           NG_Y,    NG_U,    NG_I,    NG_O,    NG_P, _______, _______,
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______,                   _______, _______, NG_SHFT,        NG_SHFT, _______, _______,                   _______
   //`--------'                 `--------+--------+--------'      `--------------------------'                 `--------'
   ),
-// 薙刀式
+// 薙刀式 end 3
 
   [6] = LAYOUT(
     _______,  _______,    _______,    _______,    _______,    _______,         _______,    _______,    _______,    _______,    _______,    _______, _______, \
@@ -230,7 +230,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             eeconfig_update_user(naginata_config.raw);
             return false;
 
-// 薙刀式 OLEDを使う場合
+// 薙刀式 begin 4 -- OLEDを使う場合
 #ifdef OLED_ENABLE
             case NGSW_WIN...NG_KOTI:
             if (record->event.pressed) {
@@ -238,14 +238,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 #endif
-// 薙刀式
+// 薙刀式 end 4
         }
     }
 
-    // 薙刀式
+    // 薙刀式 begin 5
     if (!process_naginata(keycode, record))
         return false;
-    // 薙刀式
+    // 薙刀式 end 5
 
     return true;
 }
@@ -260,18 +260,17 @@ void housekeeping_task_user(void) {
             break;
         }
     }
-    // 薙刀式
+    // 薙刀式 begin 6
     // 後置シフト待ち処理
     kouchi_shift_loop();
-    // 薙刀式
+    // 薙刀式 end 6
 }
 
 void matrix_init_user(void) {
-    // 薙刀式
+    // 薙刀式 begin 7
     uint16_t ngonkeys[] = {KC_H, KC_J};
     uint16_t ngoffkeys[] = {KC_F, KC_G};
     set_naginata(_NAGINATA, ngonkeys, ngoffkeys);
-    // 薙刀式
 
     // 自動でOSによってレイヤーや薙刀式の設定を切り替える
 #ifdef OS_DETECTION_ENABLE
@@ -291,6 +290,7 @@ void matrix_init_user(void) {
         break;
     }
 #endif
+    // 薙刀式 end 7
 }
 
 #include "vial.h"
