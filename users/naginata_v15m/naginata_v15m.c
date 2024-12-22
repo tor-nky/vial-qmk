@@ -1290,10 +1290,10 @@ void ng_paste() {
         // 薙刀式の使用には問題ない
       break;
     case NG_MAC_BMP:
-      bmp_send_string(SS_DOWN(X_LCMD)SS_DELAY(100)SS_DOWN(X_V)SS_DELAY(100)SS_UP(X_V)SS_UP(X_LCMD)SS_DELAY(100));
+      bmp_send_string(SS_DOWN(X_LCMD)SS_DOWN(X_V)SS_DELAY(135)SS_UP(X_V)SS_UP(X_LCMD));
       break;
     case NG_IOS_BMP:
-      bmp_send_string(SS_LCMD("v")SS_DELAY(80));
+      bmp_send_string(SS_LCMD("v")SS_DELAY(220));
       break;
   }
 #else
