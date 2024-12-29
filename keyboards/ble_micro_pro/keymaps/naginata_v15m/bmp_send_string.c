@@ -42,14 +42,14 @@ static void bmp_append_string(const char *string) {
         size_t after_size = queue + (QUEUE_SIZE_MAX) - queue_write_p;
         // キューを折り返す必要あり
         if (string_size >= after_size) {
-            memcpy(queue_write_p, string, after_size);  // 末尾の '\0' はコピーしない
+            memcpy_P(queue_write_p, string, after_size);  // 末尾の '\0' はコピーしない
             queue_write_p = queue;
             string += after_size;
             string_size -= after_size;
         }
     }
     if (string_size) {
-        memcpy(queue_write_p, string, string_size); // 末尾の '\0' はコピーしない
+        memcpy_P(queue_write_p, string, string_size); // 末尾の '\0' はコピーしない
         queue_write_p += string_size;
     }
 }
