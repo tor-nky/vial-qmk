@@ -190,11 +190,6 @@
       "shortName": "NG\nOFF"
     },
     {
-      "name": "NG_CLR",
-      "title": "Naginata System Clear",
-      "shortName": "NG\nCLR"
-    },
-    {
       "name": "NGSW_WIN",
       "title": "Naginata System to Windows",
       "shortName": "NGSW\nWIN"
@@ -220,14 +215,14 @@
       "shortName": "NG\nSHOS"
     },
     {
-      "name": "NG_TAYO",
-      "title": "Naginata System TATEGAKI Toggle",
-      "shortName": "NG\nTAYO"
-    },
-    {
       "name": "NG_KOTI",
       "title": "Naginata System KOUCHI-Shift Toggle",
       "shortName": "NG\nKOTI"
+    },
+    {
+      "name": "NG_TAYO",
+      "title": "Naginata System TATEGAKI Toggle",
+      "shortName": "NG\nTAYO"
     }
   ],
   "layouts": {
