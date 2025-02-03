@@ -184,16 +184,6 @@
       "shortName": "NG\nSHFT2"
     },
     {
-      "name": "NG_ON",
-      "title": "Naginata System On",
-      "shortName": "NG\nON"
-    },
-    {
-      "name": "NG_OFF",
-      "title": "Naginata System Off",
-      "shortName": "NG\nOFF"
-    },
-    {
       "name": "NGSW_WIN",
       "title": "Naginata System to Windows",
       "shortName": "NGSW\nWIN"
@@ -209,9 +199,14 @@
       "shortName": "NGSW\nLNX"
     },
     {
-      "name": "NG_MLV",
-      "title": "Naginata System Mac Live Conversion Toggle",
-      "shortName": "NG\nMLV"
+      "name": "NG_ON",
+      "title": "Naginata System On",
+      "shortName": "NG\nON"
+    },
+    {
+      "name": "NG_OFF",
+      "title": "Naginata System Off",
+      "shortName": "NG\nOFF"
     },
     {
       "name": "NG_SHOS",

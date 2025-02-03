@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.      ,--------------------------------------------------------------.
       QK_BOOT, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  US2JIS,   NK_ON, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, KC_VOLU, KC_BRIU,        XXXXXXX,  QK_RBT, NG_KOTI,  NG_MLV,  US_KEY,  NK_OFF, XXXXXXX,
+      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, KC_VOLU, KC_BRIU,        XXXXXXX,  QK_RBT, NG_KOTI, XXXXXXX,  US_KEY,  NK_OFF, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
       RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_VOLD, KC_BRID,       NGSW_WIN,NGSW_MAC,NGSW_LNX, NG_TAYO, NG_SHOS, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------|
