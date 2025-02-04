@@ -162,10 +162,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
 
-    // 薙刀式 begin 5
+    // 薙刀式 begin 4
     if (!process_naginata(keycode, record))
         return false;
-    // 薙刀式 end 5
+    // 薙刀式 end 4
 
     return cont;
 }
@@ -185,14 +185,14 @@ void housekeeping_task_user(void) {
         }
     }
     cli_exec();
-    // 薙刀式 begin 6
+    // 薙刀式 begin 5
     // 後置シフト待ち処理
     kouchi_shift_loop();
-    // 薙刀式 end 6
+    // 薙刀式 end 5
 }
 
 void matrix_init_user(void) {
-    // 薙刀式 begin 7
+    // 薙刀式 begin 6
     uint16_t ngonkeys[] = {KC_H, KC_J};
     uint16_t ngoffkeys[] = {KC_F, KC_G};
     set_naginata(_NAGINATA, ngonkeys, ngoffkeys);
@@ -215,7 +215,7 @@ void matrix_init_user(void) {
         break;
     }
 #endif
-    // 薙刀式 end 7
+    // 薙刀式 end 6
 }
 
 #include "vial.h"
