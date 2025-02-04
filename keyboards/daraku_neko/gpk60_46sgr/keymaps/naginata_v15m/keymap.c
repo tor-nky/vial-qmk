@@ -16,10 +16,6 @@
 
 // 薙刀式 begin 1
 #include "naginata.h"
-#ifdef OLED_ENABLE
-  bool update_oled = true;
-  bool ng_state = false;
-#endif
 // 薙刀式 end 1
 
 // Defines names for use in layer keycodes and the keymap
@@ -229,23 +225,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             naginata_config.key_os_override = JP_KEY_US_OS_OVERRIDE_DISABLE;
             eeconfig_update_user(naginata_config.raw);
             return false;
-
-// 薙刀式 begin 4 -- OLEDを使う場合
-#ifdef OLED_ENABLE
-            case NGSW_WIN...NG_KOTI:
-            if (record->event.pressed) {
-                update_oled = true; // 設定をOLED表示に反映する
-            }
-            break;
-#endif
-// 薙刀式 end 4
         }
     }
 
-    // 薙刀式 begin 5
+    // 薙刀式 begin 4
     if (!process_naginata(keycode, record))
         return false;
-    // 薙刀式 end 5
+    // 薙刀式 end 4
 
     return true;
 }
@@ -260,14 +246,14 @@ void housekeeping_task_user(void) {
             break;
         }
     }
-    // 薙刀式 begin 6
+    // 薙刀式 begin 5
     // 後置シフト待ち処理
     kouchi_shift_loop();
-    // 薙刀式 end 6
+    // 薙刀式 end 5
 }
 
 void matrix_init_user(void) {
-    // 薙刀式 begin 7
+    // 薙刀式 begin 6
     uint16_t ngonkeys[] = {KC_H, KC_J};
     uint16_t ngoffkeys[] = {KC_F, KC_G};
     set_naginata(_NAGINATA, ngonkeys, ngoffkeys);
@@ -290,7 +276,7 @@ void matrix_init_user(void) {
         break;
     }
 #endif
-    // 薙刀式 end 7
+    // 薙刀式 end 6
 }
 
 #include "vial.h"
