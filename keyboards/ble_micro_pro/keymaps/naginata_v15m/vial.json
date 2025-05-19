@@ -130,6 +130,16 @@
       "shortName": "JU\nOVR"
     },
     {
+      "name"  : "ENABLE_WEB_BT_CONNECTION",
+      "title" : "Enable web bluetooth connection",
+      "shortName" : "EN\nWEBBT"
+    },
+    {
+      "name": "DISABLE_WEB_BT_CONNECTION",
+      "title": "Disable web bluetooth connection",
+      "shortName": "DIS\nWEBBT"
+    },
+    {
       "name": "NG_Q",
       "title": "Naginata System Key Q",
       "shortName": "NG\nQ"
@@ -313,16 +323,6 @@
       "name": "NG_SHOS",
       "title": "Naginata System Show OS",
       "shortName": "NG\nSHOS"
-    },
-    {
-      "name": "NG_KOTI",
-      "title": "Naginata System KOUCHI-Shift Toggle",
-      "shortName": "NG\nKOTI"
-    },
-    {
-      "name": "NG_TAYO",
-      "title": "Naginata System TATEGAKI Toggle",
-      "shortName": "NG\nTAYO"
     }
   ],
   "layouts": {
