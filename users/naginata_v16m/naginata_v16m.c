@@ -576,7 +576,7 @@ static bool enable_naginata(uint16_t keycode, keyrecord_t *record) {
       return false;
     }
   // かなオン・オフキーが離された
-  } else if (fghj_buf != KC_NO) {
+  } else if (keycode == fghj_buf) {
     tap_code(fghj_buf);
     fghj_buf = KC_NO;
     // Shift + Jで、先にShiftを外した場合にShiftがリリースされない不具合対策
@@ -913,7 +913,7 @@ bool naginata_type(uint16_t keycode, keyrecord_t *record) {
     center_shift = false;
   }
 
-  // 薙刀式のキーを押した
+  // キーを押した
   if (pressing) {
     pressed_key |= recent_key;  // キーを加える
 #if defined(NG_KOUCHI_SHIFT_MS)
