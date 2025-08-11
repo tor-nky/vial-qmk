@@ -902,7 +902,7 @@ static Ngkey pressed_key = 0; // 同時押しの状態を示す。各ビット�
 static uint_fast8_t waiting_count = 0; // 文字キーを数える
 static uint_fast8_t center_shift_count = 0;
 static uint8_t ng_center_keycode = KC_NO;
-static enum RestShiftState { Off, Run } rest_shift_state = Off;
+static enum ReuseKeyState { Off, Run } reuse_key_state = Off;
 
 // キー入力を文字に変換して出力する
 // 薙刀式のキー入力だったなら false を返す
@@ -944,7 +944,7 @@ bool naginata_type(uint16_t keycode, keyrecord_t *record) {
     center_shift = false;
   }
 
-  // 薙刀式のキーを押した
+  // キーを押した
   if (pressing) {
     pressed_key |= recent_key;  // キーを加える
 #if defined(NG_KOUCHI_SHIFT_MS)
@@ -984,9 +984,9 @@ bool naginata_type(uint16_t keycode, keyrecord_t *record) {
         searching_key |= waiting_keys[i];
       }
 
-      // シフト復活処理
-      if (rest_shift_state == Run && ng_search(pressed_key) < NGMAP_COUNT) {
-        rest_shift_state = Off;
+      // キー再利用処理
+      if (reuse_key_state == Run && ng_search(pressed_key) < NGMAP_COUNT) {
+        reuse_key_state = Off;
         waiting_keys[0] = pressed_key;
         searching_key = pressed_key;
       }
@@ -1022,8 +1022,8 @@ bool naginata_type(uint16_t keycode, keyrecord_t *record) {
         }
         // センターシフトの連続用
         center_shift = (bool)(searching_key & B_SHFT);
-        // 1回出力したらシフト復活は終わり
-        rest_shift_state = Off;
+        // 1回出力したらキー再利用は終わり
+        reuse_key_state = Off;
         // 見つかった分のキーを配列から取り除く
         waiting_count -= searching_count;
         for (uint_fast8_t i = 0; i < waiting_count; i++) {
@@ -1056,10 +1056,10 @@ bool naginata_type(uint16_t keycode, keyrecord_t *record) {
 #else
     if (waiting_count || pressed_key & B_SHFT || !pressed_key || recent_key == B_SHFT) {
 #endif
-      rest_shift_state = Off;
-    // スペースを押していないなら次回、シフト復活可能
+      reuse_key_state = Off;
+    // スペースを押していないなら次回、キー再利用可能
     } else {
-      rest_shift_state = Run;
+      reuse_key_state = Run;
     }
   }
   return (recent_key == 0);
@@ -1093,7 +1093,7 @@ static void naginata_clear(void) {
   end_repeating_key();
   pressed_key = 0;
   waiting_count = 0; // 文字キーを数える
-  rest_shift_state = Off;
+  reuse_key_state = Off;
 }
 
 void ng_space_or_enter(void) {
