@@ -1,7 +1,7 @@
 {
     "keyboard_name": "coconut42 Keyboard",
     "manufacturer": "tor-nky",
-    "url": "",
+    "url": "https://github.com/tor-nky/coconut42",
     "maintainer": "tor-nky",
     "usb": {
         "vid": "0xFEED",
@@ -10,6 +10,9 @@
     },
     "bootloader": "rp2040",
     "processor": "RP2040",
+    "build": {
+        "lto": true
+    },
     "features": {
         "bootmagic": true,
         "extrakey": true,
@@ -17,9 +20,6 @@
         "nkro": true,
         "oled": true,
         "rgblight": true
-    },
-    "build": {
-        "lto": true
     },
     "matrix_pins": {
         "cols": ["GP26", "GP27", "GP28", "GP29", "GP3", "GP4", "GP2"],
