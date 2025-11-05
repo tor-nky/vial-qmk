@@ -360,6 +360,8 @@ static void render_mode(void) {
         delete_char(5, 14);
         break;
     }
+    delete_char(128 + 12, 7);
+    delete_char(128 + 5, 7);
     if (!naginata_config.kouchi_shift) {
       delete_char(2 * 128 + 5, 7);
     }
