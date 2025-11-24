@@ -19,9 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-#include "eeconfig.h"
-#include "vial.h"
-
 #include "keymap.h"
 #include "os_key_override.h"
 

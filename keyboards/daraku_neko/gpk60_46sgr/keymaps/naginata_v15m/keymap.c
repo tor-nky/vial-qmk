@@ -3,7 +3,6 @@
 #include QMK_KEYBOARD_H
 
 #include "eeconfig.h"
-#include "vial.h"
 
 #include "keymap.h"
 #include "os_key_override.h"
