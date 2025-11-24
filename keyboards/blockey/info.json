@@ -24,9 +24,6 @@
       "twinkle": true
     }
   },
-  "ws2812": {
-    "pin": "B1"
-  },
   "features": {
     "bootmagic": false,
     "command": true,
@@ -36,19 +33,7 @@
     "nkro": false,
     "rgblight": true
   },
-  "qmk": {
-    "locking": {
-      "enabled": true,
-      "resync": true
-    }
-  },
-  "matrix_pins": {
-    "cols": ["D0", "B4", "C6", "D7", "F4", "F5", "F7"],
-    "rows": ["D3", "D1", "D4", "E6", "B5", "D2", "F6", "B3", "B2", "B6"]
-  },
   "diode_direction": "COL2ROW",
-  "processor": "atmega32u4",
-  "bootloader": "caterina",
   "layouts": {
     "LAYOUT": {
       "layout": [
