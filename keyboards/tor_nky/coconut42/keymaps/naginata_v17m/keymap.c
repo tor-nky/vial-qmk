@@ -57,7 +57,7 @@ enum keymap_layers {
 #define LS_SPC LSFT_T(KC_SPC)
 #define RS_SPC RSFT_T(KC_SPC)
 #define RAI_ENT LT(_RAISE, KC_ENT)
-#define OP_KANA RALT_T(KC_LNG1)
+#define OP_KANA LALT_T(KC_LNG1)
 #define SFT_DEL RSFT_T(KC_DEL)
 // [_LOWER]
 #define ADJ_ENT LT(_ADJUST, KC_PENT)
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_DEL,
   //|--------+--------+--------+--------+--------+--------|    |--------+--------+--------+--------+--------+--------|
-                                 KC_LGUI,  LOW_BS,  LS_SPC,       RS_SPC, RAI_ENT, KC_RALT
+                                 KC_LGUI,  LOW_BS,  LS_SPC,       RS_SPC, RAI_ENT, KC_LALT
                              //`--------------------------'    `--------------------------'
   ),
 

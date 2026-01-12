@@ -16,14 +16,14 @@ OLED_DRIVER	= ssd1306
 # MAGIC_ENABLE = yes
 # GRAVE_ESC_ENABLE = yes
 
-include keyboards/tor_nky/coconut42/keymaps/naginata_v16m/key_override/rules.mk
-VPATH += keyboards/tor_nky/coconut42/keymaps/naginata_v16m/key_override
+include keyboards/tor_nky/coconut42/keymaps/naginata_v17m/key_override/rules.mk
+VPATH += keyboards/tor_nky/coconut42/keymaps/naginata_v17m/key_override
 
 GIT_DESCRIBE := $(shell git describe --tags --long --dirty="\\*" 2>/dev/null)
 CFLAGS += -DGIT_DESCRIBE=$(GIT_DESCRIBE)
 
 # Override raw_hid_receive to support both of VIA and VIAL
-$(BUILD_DIR)/obj_tor_nky_coconut42_naginata_v16m/quantum/dynamic_keymap.o:: CFLAGS += -Ddynamic_keymap_macro_send=dynamic_keymap_macro_send_vial
+$(BUILD_DIR)/obj_tor_nky_coconut42_naginata_v17m/quantum/dynamic_keymap.o:: CFLAGS += -Ddynamic_keymap_macro_send=dynamic_keymap_macro_send_vial
 
 
 OS_DETECTION_ENABLE = yes
