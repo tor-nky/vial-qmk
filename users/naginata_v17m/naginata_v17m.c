@@ -20,7 +20,7 @@
 #include "unicode_P.h"
 #if defined(NG_BMP)
 #   include "bmp_host_driver.h"
-#   include "keyboards/ble_micro_pro/keymaps/naginata_v16m/bmp_send_string.h"
+#   include "keyboards/ble_micro_pro/keymaps/naginata_v17m/bmp_send_string.h"
 #endif
 
 #include <string.h>
