@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|    |--------+--------+--------+--------+--------+--------|
       RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, KC_VOLU, KC_BRIU,      XXXXXXX,  QK_RBT, NG_KOTI, XXXXXXX,  US_KEY,  NK_OFF,
   //|--------+--------+--------+--------+--------+--------|    |--------+--------+--------+--------+--------+--------|
-      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_VOLD, KC_BRID,     NGSW_WIN,NGSW_MAC,NGSW_LNX, XXXXXXX, NG_SHOS, KC_RSFT,
+      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_VOLD, KC_BRID,     NGSW_WIN,NGSW_MAC,NGSW_LNX, NG_TAYO, NG_SHOS, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------|    |--------+--------+--------+--------+--------+--------|
                                  XXXXXXX, _______, XXXXXXX,      XXXXXXX, _______, XXXXXXX
                              //`--------------------------'    `--------------------------'
@@ -357,8 +357,11 @@ static void render_mode(void) {
         delete_char(5, 14);
         break;
     }
-    delete_char(128 + 12, 7);
-    delete_char(128 + 5, 7);
+    if (naginata_config.tategaki) {
+      delete_char(128 + 12, 7);
+    } else {
+      delete_char(128 + 5, 7);
+    }
     if (!naginata_config.kouchi_shift) {
       delete_char(2 * 128 + 5, 7);
     }

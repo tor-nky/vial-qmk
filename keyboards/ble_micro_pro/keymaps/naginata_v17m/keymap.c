@@ -16,9 +16,13 @@ const uint16_t PROGMEM encoder_map[1][NUM_ENCODERS][NUM_DIRECTIONS] = {{{KC_MS_U
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
 layer_state_t layer_state_set_user(layer_state_t state) {
   if (naginata_state()) {
-    rgblight_sethsv_noeeprom(HSV_GREEN);
+    if (naginata_config.tategaki) {
+      rgblight_sethsv_noeeprom(HSV_RED);
+    } else {
+      rgblight_sethsv_noeeprom(HSV_CYAN);
+    }
   } else {
-    rgblight_sethsv(HSV_TURQUOISE);
+    rgblight_sethsv(HSV_GOLD);
   }
   return state;
 }

@@ -217,6 +217,11 @@
       "name": "NG_KOTI",
       "title": "Naginata System KOUCHI-Shift Toggle",
       "shortName": "NG\nKOTI"
+    },
+    {
+      "name": "NG_TAYO",
+      "title": "Naginata System TATEGAKI Toggle",
+      "shortName": "NG\nTAYO"
     }
   ],
   "layouts": {
