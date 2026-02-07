@@ -756,7 +756,8 @@ static void ng_send_kana(const char *str) {
         ascii_code = next;
     }
     // 最後にすべてのキーを離す
-    clear_keyboard_but_mods();  // 押されている修飾キー以外の全てのキーをクリア
+    clear_keys();
+    send_keyboard_report();
 }
 #       define NG_SEND_KANA(string) ng_send_kana(PSTR(string))
 #   endif
@@ -1441,12 +1442,12 @@ void ng_solidus(void) { // ／{改行}
     ng_send_unicode_string_P(PSTR("／"));
 #endif
 }
-void ng_white_circle(void) { // 〇{改行}
+void ng_white_circle(void) { // ○{改行}
 #if defined(NG_BMP) || defined(NG_USE_DIC)
     ng_ime_complete();
-    dic_send_string(PSTR("nagimaru")); // "〇"
+    dic_send_string(PSTR("nagimaru")); // "○"
 #else
-    ng_send_unicode_string_P(PSTR("〇"));
+    ng_send_unicode_string_P(PSTR("○"));
 #endif
 }
 void ng_vertical_line(void) { // ｜{改行}
