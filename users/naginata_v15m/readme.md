@@ -1,9 +1,9 @@
 このソースは eswaiさんの [naginata_v15](https://github.com/eswai/qmk_firmware/tree/master/users/naginata_v15) を元に作成しています。
 
 次のようなバイナリを作成することができます。
-* 現行のMS-IMEでも使用できる辞書登録式  
+* 現行のMS-IMEでも使用できる辞書登録式
 WindowsとMacでは日本語キーボード、英語キーボードどちらでも使えます。
-* IME設定を駆使して好みに近づけた方式  
+* IME設定を駆使して好みに近づけた方式
 * BLE Micro Pro用(Bluetooth接続のiPhoneを含む)(bmp-vial 1.4.0対応)
 # 薙刀式カナ配列キーマップ
 薙刀式カナ配列による入力をQMKで実現します。薙刀式v15に準拠しています。
@@ -13,16 +13,16 @@ WindowsとMacでは日本語キーボード、英語キーボードどちらで�
 切り替えは再コンパイル不要で、動的に切り替えられます。
 ## 薙刀式とは
 【薙刀式】v15fix版、発表
-http://oookaworks.seesaa.net/article/500180437.html#gsc.tab=0
+https://oookaworks.seesaa.net/article/500180437.html#gsc.tab=0
 ## QMK Firmware　への組み込み方
 1. [qmk_userspace/users/naginata_v15m/](https://github.com/tor-nky/qmk_userspace/tree/main/users/naginata_v15m) フォルダの内容を、各自の同様のフォルダを作りコピーする。
 1. 各自の qmk_****/keyboards/%キーボード名%/keymaps/naginata_v15m/ フォルダに keymap.c を作成する。
-1. こちらの [keymap.c](https://github.com/tor-nky/qmk_userspace/blob/main/keyboards/tor_nky/coconut42/keymaps/naginata_v15m/keymap.c) などを参考に、2つの `// 薙刀式` で囲まれた部分を付け加える。  
+1. こちらの [keymap.c](https://github.com/tor-nky/qmk_userspace/blob/main/keyboards/tor_nky/coconut42/keymaps/naginata_v15m/keymap.c) などを参考に、2つの `// 薙刀式` で囲まれた部分を付け加える。
 OLED を使わなければ7番目は不要です。
 1. コンパイルする `qmk compile -kb %キーボード名% -km naginata_v15m`
 1. キーボードに書き込む
 ## OSなどの設定 (辞書使用の場合とBLE Micro Pro)
-IMEへの辞書登録が必要ですが、他の設定はいりません。そのため、現行のMS-IMEでも使えます。  
+IMEへの辞書登録が必要ですが、他の設定はいりません。そのため、現行のMS-IMEでも使えます。
 辞書使用の場合、config.h の中に ``#define NG_USE_DIC`` を書き加えてコンパイルします。
 
 BLE Micro Pro の場合、vial-qmk/keyboards/ble_micro_pro/keymaps/ 下の [naginata_v15m/](https://github.com/tor-nky/vial-qmk/tree/kana/naginata/keyboards/ble_micro_pro/keymaps/naginata_v15m) と [vial/](https://github.com/tor-nky/vial-qmk/tree/kana/naginata/keyboards/ble_micro_pro/keymaps/vial) の内容の違いをお調べ下さい。
@@ -50,7 +50,7 @@ IMEのキー設定
 |---|:---:|:---:|
 |Ctrl+Shift+変換| - |全確定|
 ### Mac辞書式の場合
-日本語IMのライブ変換は使用できません。  
+日本語IMのライブ変換は使用できません。
 M+Comma+Z を押して「　　　×　　　×　　　×」が入力できなければ、変換学習を一度リセットしてください。
 
 また、「キーボード設定を開く...」から「入力ソース」に英語「U.S.」を加え、「英数」キーでIMをオフにしたとき「U.S.」になるようにすると、かな入力中でも JK+Q (文末へ) が効くようになります。
@@ -111,7 +111,7 @@ OLEDが有効な場合には左側のOLEDには、
 
 3キー同時押しのカーソル移動と、Delキーにだけキーリピートが効きます。
 
-F+G を押さなくても 左右シフト＋英字 で 固定英数入力かIMEオフになるので、アルファベットの入力がすぐにできます。  
+F+G を押さなくても 左右シフト＋英字 で 固定英数入力かIMEオフになるので、アルファベットの入力がすぐにできます。
 再びかな入力にするときは H+J を押して IMEオン にします。
 ## キーボードの切り替え操作
 以下の機能を動的に切り替えることができます。
@@ -135,7 +135,7 @@ OLEDをオンにしているときは、設定の状態がOLEDに表示されま
  * 2行目 縦書き(T)、横書き(Y)
  * 3行目 後置シフト(Kでオン)
 ## 不具合
-* 定義が設定されていないキーを押しても、何の代わりも出力しない  
+* 定義が設定されていないキーを押しても、何の代わりも出力しない
 この場合、キーマップから該当するキーを NG_** でないものに変えてください。
 * Windows 11以降のメモ帳では、表示が引っかかったり入力を正しく行えないことがあるため使えません。
 * Windows の秀丸エディタでは、入力が速すぎると表示が乱れたりクラッシュすることがあります。
@@ -183,9 +183,9 @@ Hachikuと本バージョンは、まだ同時押しになるキーがあった�
 |Z離す|あるしょうほう|あるしょうほ|あるじょうほ||
 |L離す|あるしょうほう|あるしょうほう|あるじょうほう||
 
-DvorakJで 3かな以上のロールオーバー押しをしたときは、__最初に離すキーを選びます__。  
+DvorakJで 3かな以上のロールオーバー押しをしたときは、__最初に離すキーを選びます__。
 (3)で J以外のキーを最初に離せば、「あるじょ」と入力されます。
-Hachikuでは __キーを離した後は、左にあるキーを先に押さないと__ 3キー同時押しになりません。  
+Hachikuでは __キーを離した後は、左にあるキーを先に押さないと__ 3キー同時押しになりません。
 (1)で Iより先に Rを押せば、(2)では「あるじょ」と入力されます。
 ### 4キー以上のキー押し→キー1個離す→キー押し
 キー|DvorakJ|Hachiku|naginata_v15m|
@@ -211,8 +211,8 @@ Hachikuでは __キーを離した後は、左にあるキーを先に押さな�
 ## 変換ロジック
 関数which_trans_state()を利用し、早期出力をします。
 
-その仕組みです。  
-戻り値がOneの時はそのまま検索、Noneの時は後ろを縮めて検索、Multipulの時は候補を絞れないので次の入力を待ちます。  
+その仕組みです。
+戻り値がOneの時はそのまま検索、Noneの時は後ろを縮めて検索、Multipulの時は候補を絞れないので次の入力を待ちます。
 未変換のキーが3つあれば即変換してよいので関数は使用しません。
 
 キー|キー残り|出力|関数戻り値|補足|
