@@ -3,7 +3,7 @@
 次のようなバイナリを作成することができます。
 * 現行のMS-IMEでも使用できる辞書登録式  
 WindowsとMacでは日本語キーボード、英語キーボードどちらでも使えます。
-* IME設定を駆使して好みに近づけた方式  
+* IME設定を駆使して好みに近づけた方式
 * BLE Micro Pro用(Bluetooth接続のiPhoneを含む)(bmp-vial 1.4.0対応)
 # 薙刀式カナ配列キーマップ
 薙刀式カナ配列による入力をQMKで実現します。薙刀式v15に準拠しています。
@@ -17,7 +17,7 @@ https://oookaworks.seesaa.net/article/500180437.html#gsc.tab=0
 ## QMK Firmware　への組み込み方
 1. [qmk_userspace/users/naginata_v15m/](https://github.com/tor-nky/qmk_userspace/tree/main/users/naginata_v15m) フォルダの内容を、各自の同様のフォルダを作りコピーする。
 1. 各自の qmk_****/keyboards/%キーボード名%/keymaps/naginata_v15m/ フォルダに keymap.c を作成する。
-1. こちらの [keymap.c](https://github.com/tor-nky/qmk_userspace/blob/main/keyboards/tor_nky/coconut42/keymaps/naginata_v17m/keymap.c) などを参考に、2つの `// 薙刀式` で囲まれた部分を付け加える。  
+1. こちらの [keymap.c](https://github.com/tor-nky/qmk_userspace/blob/main/keyboards/tor_nky/coconut42/keymaps/naginata_v18m/keymap.c) などを参考に、2つの `// 薙刀式` で囲まれた部分を付け加える。  
 OLED を使わなければ7番目は不要です。
 1. コンパイルする `qmk compile -kb %キーボード名% -km naginata_v15m`
 1. キーボードに書き込む
@@ -79,11 +79,7 @@ IMEのキー設定
 「キーボード設定を開く...」から「入力ソース」に英語「U.S.」を加えます。
 「英数」キーでIMをオフにしたとき「U.S.」になるようにしてください。
 
-さらに、[Karabiner-Elements](https://karabiner-elements.pqrs.org/)をインストールします。
-ファイル unicode_hex_input_switcher.json をフォルダ ~/.config/karabiner/assets/complex_modification/ にコピーし、
-Karabiner-Elements に Unicode Hex Input Switcher を登録してください。
-
-念のため、Karabiner-Elements の設定 Device で、本ファームウェアが入ったキーボードが有効になっているか確認してください。
+さらに、[Ishizuki](https://github.com/eswai/Ishizuki)をインストールしてください。
 #### IM に「かわせみ」を使用する場合
 コード入力に Control+Option+Shift+かな を設定してください。
 （config.h の中に ``#define NG_USE_KAWASEMI`` と ``#define UNICODE_KEY_MAC KC_NO`` を書き加えてコンパイルします）
