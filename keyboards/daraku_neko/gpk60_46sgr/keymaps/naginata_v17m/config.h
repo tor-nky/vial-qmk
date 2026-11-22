@@ -31,6 +31,7 @@
 
 #define QK_NG (QK_KB_0 + 3) // 薙刀式シフトキーのキーコード開始位置
 
+#define NG_KANA_FAST    // 文字列をできるかぎりロールオーバーしながら高速出力
 #define NG_USE_KAWASEMI // Mac汎用 → かわせみ専用
 #define UNICODE_KEY_MAC KC_NO   // Keycodes used for starting Unicode input on different platforms
 
